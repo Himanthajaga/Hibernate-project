@@ -9,27 +9,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StudentFormController {
-
-    @FXML
-    private AnchorPane StudentPane;
-
-    @FXML
-    private MFXButton btnAdd;
+public class CoursePaymentFormController {
 
     @FXML
     private MFXButton btnRemove;
 
     @FXML
-    private MFXButton btnSearch;
-
-    @FXML
-    private MFXButton btnUpdate;
+    private MFXButton btnRemove1;
 
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -50,15 +40,14 @@ public class StudentFormController {
     private TableColumn<?, ?> colName;
 
     @FXML
-    private TableView<?> tblStudent;
+    private TableView<?> tblUser;
 
     @FXML
     private MFXTextField txtSearch;
-    private StudentFormController studentFormController;
 
     @FXML
     void btnAddOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/studentDataForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/coursePaymentDataForm.fxml"));
         Parent rootNode = loader.load();
 
 //        StudentDataFormController studentDataFormController = loader.getController();
@@ -71,16 +60,10 @@ public class StudentFormController {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.centerOnScreen();
-        stage.setTitle("Add User");
+        stage.setTitle("Add Payment");
         stage.show();
     }
-    public void setStudentFormController(StudentFormController studentFormController) {
-        this.studentFormController = studentFormController;
-    }
-//    public void setBtnAndLblName(String action){
-//        btnAdd.setText(action);
-//        lbl.setText(action + " User");
-//    }
+
     @FXML
     void btnRemoveOnAction(ActionEvent event) {
 
@@ -88,11 +71,6 @@ public class StudentFormController {
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) {
 
     }
 

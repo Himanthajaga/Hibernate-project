@@ -19,11 +19,11 @@
          <children>
             <VBox layoutY="119.0" prefHeight="369.0" prefWidth="190.0" spacing="10.0">
                <children>
-                  <MFXButton fx:id="btnStudentSearch" alignment="BASELINE_LEFT" onAction="#btnStudentSearchOnAction" prefHeight="51.0" prefWidth="197.0" styleClass="mfx-button-BookSearch" text="Students">
+                  <MFXButton fx:id="btnDashboard" alignment="BASELINE_LEFT" onAction="#btnDashboardOnAction" prefHeight="51.0" prefWidth="197.0" styleClass="mfx-button-Dashboard" text="Dashboard">
                      <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/images/user-gray.png" />
+                              <Image url="@../assets/images/dashboard-gray.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -58,11 +58,11 @@
                         <Insets left="35.0" />
                      </padding>
                   </MFXButton>
-                  <MFXButton fx:id="btnCourses" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="132.0" onAction="#btnCoursesOnAction" prefHeight="51.0" prefWidth="197.0" styleClass="mfx-button-Settings" text="Courses">
+                  <MFXButton fx:id="btnPayment" alignment="BASELINE_LEFT" onAction="#btnPaymentsOnAction" prefHeight="51.0" prefWidth="197.0" styleClass="mfx-button-BorrowBooks" text="Payments">
                      <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/images/book-gray.png" />
+                              <Image url="@../assets/images/borrowBooks-gray.png" />
                            </image>
                         </ImageView>
                      </graphic>

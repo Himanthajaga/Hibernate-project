@@ -17,7 +17,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <MFXButton buttonType="RAISED" layoutX="667.0" layoutY="130.0" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PageStyles.css" text="Add">
+      <MFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="666.0" layoutY="133.0" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" text="Add">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -26,7 +26,7 @@
             </ImageView>
          </graphic>
       </MFXButton>
-      <TableView fx:id="tblUser" focusTraversable="false" layoutX="27.0" layoutY="197.0" prefHeight="433.0" prefWidth="749.0" stylesheets="@../assets/css/TableStyle.css">
+      <TableView fx:id="tblStudent" focusTraversable="false" layoutX="27.0" layoutY="197.0" prefHeight="433.0" prefWidth="749.0" stylesheets="@../assets/css/TableStyle.css">
          <columns>
             <TableColumn fx:id="colName" prefWidth="96.0" style="-fx-alignment: center;" text="Name" />
             <TableColumn fx:id="colEmail" prefWidth="136.0" style="-fx-alignment: center;" text="Email" />
@@ -36,8 +36,8 @@
             <TableColumn fx:id="colId" minWidth="0.0" prefWidth="125.0" style="-fx-alignment: center;" text="ID" />
          </columns>
       </TableView>
-      <MFXTextField fx:id="txtSearch" floatMode="DISABLED" floatingText="Search" layoutX="27.0" layoutY="130.0" prefHeight="45.0" prefWidth="175.0" promptText="Search" styleClass="mfx-text-field-details" stylesheets="@../assets/css/PageStyles.css" />
-      <MFXButton buttonType="RAISED" layoutX="238.0" layoutY="133.0" onAction="#btnSearchOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PageStyles.css" text="Search">
+      <MFXTextField fx:id="txtSearch" floatMode="DISABLED" floatingText="Search" layoutX="27.0" layoutY="130.0" prefHeight="45.0" prefWidth="175.0" promptText="Search" styleClass="mfx-text-field-details" />
+      <MFXButton fx:id="btnSearch" buttonType="RAISED" layoutX="238.0" layoutY="133.0" onAction="#btnSearchOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PageStyles.css" text="Search">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -46,11 +46,20 @@
             </ImageView>
          </graphic>
       </MFXButton>
-      <MFXButton fx:id="btnRemove" buttonType="RAISED" layoutX="522.0" layoutY="133.0" onAction="#btnRemoveOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PageStyles.css" text="Remove">
+      <MFXButton fx:id="btnRemove" buttonType="RAISED" layoutX="522.0" layoutY="133.0" onAction="#btnRemoveOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" text="Remove">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/images/add.png" />
+                  <Image url="@../assets/images/remove.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+      <MFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="385.0" layoutY="133.0" onAction="#btnUpdateOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" text="Update">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/edit.png" />
                </image>
             </ImageView>
          </graphic>

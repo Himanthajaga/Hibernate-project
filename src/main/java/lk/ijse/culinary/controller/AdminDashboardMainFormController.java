@@ -49,6 +49,7 @@ public class AdminDashboardMainFormController {
 
     public void initialize() throws IOException {
         setAdminNameAndImage(true);
+        loadAdminDashBoardForm();
 
     }
 
@@ -64,19 +65,19 @@ public class AdminDashboardMainFormController {
 
 
 
-//    private void loadAdminDashBoardForm() throws IOException {
-//        setButtonColors(Pages.DASHBOARD);
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminDashBoardForm.fxml"));
-//        Pane dashboardPane = (Pane) fxmlLoader.load();
-//        holderPane.getChildren().clear();
-//        holderPane.getChildren().add(dashboardPane);
-//    }
+    private void loadAdminDashBoardForm() throws IOException {
+        setButtonColors(Pages.DASHBOARD);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminDashBoardForm.fxml"));
+        Pane dashboardPane = (Pane) fxmlLoader.load();
+        holderPane.getChildren().clear();
+        holderPane.getChildren().add(dashboardPane);
+    }
 
     @FXML
     void btnCourcesOnAction(ActionEvent event) throws IOException {
         setButtonColors(Pages.COURSE);
         setAdminNameAndImage(true);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/bookForm.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/courseForm.fxml"));
         Pane bookPane = (Pane) fxmlLoader.load();
         holderPane.getChildren().clear();
         holderPane.getChildren().add(bookPane);
@@ -86,7 +87,7 @@ public class AdminDashboardMainFormController {
     void btnPaymentsOnAction(ActionEvent event) throws IOException {
         setButtonColors(Pages.PAYMENTS);
         setAdminNameAndImage(true);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminBorrowBookForm.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/coursePaymentForm.fxml"));
         Pane borrowBookPane = (Pane) fxmlLoader.load();
         holderPane.getChildren().clear();
         holderPane.getChildren().add(borrowBookPane);
@@ -135,7 +136,7 @@ public class AdminDashboardMainFormController {
     void btnStudentOnAction(ActionEvent event) throws IOException {
         setButtonColors(Pages.STUDENT);
         setAdminNameAndImage(true);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/userForm.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/studentForm.fxml"));
         Pane userPane = (Pane) fxmlLoader.load();
         holderPane.getChildren().clear();
         holderPane.getChildren().add(userPane);
@@ -147,26 +148,26 @@ public class AdminDashboardMainFormController {
 
     private void setButtonColors(Pages page){
         btnDashboard.getStyleClass().remove("mfx-button-Dashboard-active");
-        btnCourse.getStyleClass().remove("mfx-button-Course-active");
-        btnPayment.getStyleClass().remove("mfx-button-Payment-active");
+        btnCourse.getStyleClass().remove("mfx-button-Book-active");
+        btnPayment.getStyleClass().remove("mfx-button-BorrowBooks-active");
         btnSetting.getStyleClass().remove("mfx-button-Settings-active");
-        btnStudent.getStyleClass().remove("mfx-button-Student-active");
+        btnStudent.getStyleClass().remove("mfx-button-User-active");
 
         switch (page){
             case DASHBOARD:
                 btnDashboard.getStyleClass().add("mfx-button-Dashboard-active");
                 break;
             case COURSE:
-                btnCourse.getStyleClass().add("mfx-button-Course-active");
+                btnCourse.getStyleClass().add("mfx-button-Book-active");
                 break;
             case PAYMENTS:
-                btnPayment.getStyleClass().add("mfx-button-Payment-active");
+                btnPayment.getStyleClass().add("mfx-button-BorrowBooks-active");
                 break;
             case SETTINGS:
                 btnSetting.getStyleClass().add("mfx-button-Settings-active");
                 break;
             case STUDENT:
-                btnStudent.getStyleClass().add("mfx-button-Student-active");
+                btnStudent.getStyleClass().add("mfx-button-User-active");
                 break;
         }
     }

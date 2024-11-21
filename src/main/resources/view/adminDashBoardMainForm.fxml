@@ -31,21 +31,6 @@
                         <Insets left="35.0" />
                      </padding>
                   </MFXButton>
-                  <MFXButton fx:id="btnPayment" alignment="BASELINE_LEFT" onAction="#btnPaymentsOnAction" prefHeight="51.0" prefWidth="197.0" styleClass="mfx-button-BorrowBooks" text="Payments">
-                     <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/images/borrowBooks-gray.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="35.0" />
-                     </padding>
-                  </MFXButton>
                   <MFXButton fx:id="btnCourse" alignment="BASELINE_LEFT" onAction="#btnCourcesOnAction" prefHeight="51.0" prefWidth="197.0" styleClass="mfx-button-Book" text="Courses">
                      <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
@@ -75,6 +60,18 @@
                         <ImageView pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/images/setting-gray.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="btnPayment" alignment="BASELINE_LEFT" onAction="#btnPaymentsOnAction" prefHeight="51.0" prefWidth="197.0" styleClass="mfx-button-BorrowBooks" text="Payments">
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/images/borrowBooks-gray.png" />
                            </image>
                         </ImageView>
                      </graphic>

@@ -214,17 +214,17 @@
             </Label>
          </children>
       </Pane>
-      <TableView fx:id="tblBorrowBook" focusTraversable="false" layoutX="28.0" layoutY="359.0" prefHeight="287.0" prefWidth="749.0" stylesheets="@../assets/css/TableStyle.css">
+      <TableView fx:id="tblStudentCourses" focusTraversable="false" layoutX="28.0" layoutY="359.0" prefHeight="287.0" prefWidth="749.0" stylesheets="@../assets/css/TableStyle.css">
          <columns>
             <TableColumn fx:id="colID" prefWidth="79.0" style="-fx-alignment: center;" text="ID" />
-            <TableColumn fx:id="colUserID" prefWidth="135.0" style="-fx-alignment: center;" text="User Name" />
-            <TableColumn fx:id="colBookID" prefWidth="108.0" style="-fx-alignment: center;" text="BookID" />
-            <TableColumn fx:id="colBorrowDate" prefWidth="146.0" style="-fx-alignment: center;" text="Borrow Date" />
-            <TableColumn fx:id="colReturnDate" prefWidth="135.0" style="-fx-alignment: center;" text="Return Date" />
-            <TableColumn fx:id="colLateCount" prefWidth="145.0" style="-fx-alignment: center;" text="Due Count" />
+            <TableColumn fx:id="colName" prefWidth="135.0" style="-fx-alignment: center;" text="Name" />
+            <TableColumn fx:id="colCourseName" prefWidth="108.0" style="-fx-alignment: center;" text="Course Name" />
+            <TableColumn fx:id="colRegisteredDate" prefWidth="146.0" style="-fx-alignment: center;" text="Registered Date" />
+            <TableColumn fx:id="colDuration" prefWidth="135.0" style="-fx-alignment: center;" text="Duration" />
+            <TableColumn fx:id="colRestPayAmount" prefWidth="145.0" style="-fx-alignment: center;" text="Rest pay Amount" />
          </columns>
       </TableView>
-      <Label layoutX="28.0" layoutY="318.0" styleClass="label-dashboard" stylesheets="@../assets/css/PageStyles.css" text="Due Books">
+      <Label layoutX="28.0" layoutY="318.0" styleClass="label-dashboard" stylesheets="@../assets/css/PageStyles.css" text="Student Courses">
          <font>
             <Font size="20.0" />
          </font>

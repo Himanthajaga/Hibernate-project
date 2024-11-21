@@ -20,9 +20,11 @@ import java.io.IOException;
 
 public class UserDashBoardMainFormController {
 
+    @FXML
+    private MFXButton btnPayment;
 
     @FXML
-    private MFXButton btnCourses;
+    private MFXButton btnDashboard;
 
     @FXML
     private MFXButton btnRegisterStudent;
@@ -30,8 +32,6 @@ public class UserDashBoardMainFormController {
     @FXML
     private MFXButton btnSetting;
 
-    @FXML
-    private MFXButton btnStudentSearch;
 
     @FXML
     private Circle cirUserImage;
@@ -44,12 +44,18 @@ public class UserDashBoardMainFormController {
 
     @FXML
     private Pane imgAndNameHolderPane;
-
     public void initialize() throws IOException {
         setUserNameAndImage(true);
+        loadUserDashBoardForm();
 
     }
-
+    private void loadUserDashBoardForm() throws IOException {
+        setButtonColors(Pages.DASHBOARD);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/userDashBoardForm.fxml"));
+        Pane dashboardPane = (Pane) fxmlLoader.load();
+        holderPane.getChildren().clear();
+        holderPane.getChildren().add(dashboardPane);
+    }
     private void setUserNameAndImage(boolean flag) {
         imgAndNameHolderPane.setVisible(flag);
         Platform.runLater(() -> {
@@ -57,37 +63,35 @@ public class UserDashBoardMainFormController {
             Image image = new Image(UserBOImpl.loggedUser.getImgUrl());
             cirUserImage.setFill(new ImagePattern(image));
         });
-
-    }
-
-
-@FXML
-    void btnCoursesOnAction(ActionEvent event) throws IOException {
-        setButtonColors(Pages.STUDENTSEARCH);
-        setUserNameAndImage(true);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/bookSearchForm.fxml"));
-        Pane bookSearchPane = (Pane) fxmlLoader.load();
-        holderPane.getChildren().clear();
-        holderPane.getChildren().add(bookSearchPane);
     }
     @FXML
-    void btnStudentSearchOnAction(ActionEvent event) throws IOException {
-        setButtonColors(Pages.STUDENTSEARCH);
+    void btnPaymentsOnAction(ActionEvent event){
+        setButtonColors(Pages.PAYMENTS);
         setUserNameAndImage(true);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/bookSearchForm.fxml"));
-        Pane bookSearchPane = (Pane) fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/coursePaymentForm.fxml"));
+        Pane coursesPane = null;
+        try {
+            coursesPane = (Pane) fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         holderPane.getChildren().clear();
-        holderPane.getChildren().add(bookSearchPane);
+        holderPane.getChildren().add(coursesPane);
     }
 
     @FXML
-    void btnRegisterStudentOnAction(ActionEvent event) throws IOException {
-        setButtonColors(Pages.REGISTER);
+    void btnDashboardOnAction(ActionEvent event){
+        setButtonColors(Pages.DASHBOARD);
         setUserNameAndImage(true);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/userBorrowBookForm.fxml"));
-        Pane historyPane = (Pane) fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/userDashboardForm.fxml"));
+        Pane settingPane = null;
+        try {
+            settingPane = (Pane) fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         holderPane.getChildren().clear();
-        holderPane.getChildren().add(historyPane);
+        holderPane.getChildren().add(settingPane);
     }
 
     @FXML
@@ -106,43 +110,62 @@ public class UserDashBoardMainFormController {
     }
 
     @FXML
-    void btnSettingsOnAction(ActionEvent event) throws IOException {
+    void btnRegisterStudentOnAction(ActionEvent event) {
+        setButtonColors(Pages.REGISTER);
+        setUserNameAndImage(true);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/studentForm.fxml"));
+        Pane registerPane = null;
+        try {
+            registerPane = (Pane) fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        holderPane.getChildren().clear();
+        holderPane.getChildren().add(registerPane);
+    }
+
+    @FXML
+    void btnSettingsOnAction(ActionEvent event) {
         setButtonColors(Pages.SETTINGS);
         setUserNameAndImage(false);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/userSettingsForm.fxml"));
-        Pane userSettingsPane = (Pane) fxmlLoader.load();
+        Pane settingPane = null;
+        try {
+            settingPane = (Pane) fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         holderPane.getChildren().clear();
-        holderPane.getChildren().add(userSettingsPane);
+        holderPane.getChildren().add(settingPane);
     }
 
     public enum Pages{
-        STUDENTSEARCH,REGISTER,SETTINGS,COURSES
+        DASHBOARD,PAYMENTS, REGISTER, SETTINGS
     }
 
-    private void setButtonColors(Pages pages){
-        btnStudentSearch.getStyleClass().remove("mfx-button-StudentSearch-active");
-        btnRegisterStudent.getStyleClass().remove("mfx-button-RegisterStudent-active");
+    private void setButtonColors(Pages page){
+        btnDashboard.getStyleClass().remove("mfx-button-Dashboard-active");
+        btnRegisterStudent.getStyleClass().remove("mfx-button-BookHistory-active");
+        btnPayment.getStyleClass().remove("mfx-button-BorrowBooks-active");
         btnSetting.getStyleClass().remove("mfx-button-Settings-active");
-        btnCourses.getStyleClass().remove("mfx-button-Courses-active");
 
-        switch (pages){
-            case STUDENTSEARCH:
-                btnStudentSearch.getStyleClass().add("mfx-button-StudentSearch-active");
+
+        switch (page){
+            case DASHBOARD:
+                btnDashboard.getStyleClass().add("mfx-button-Dashboard-active");
+                break;
+            case PAYMENTS:
+                btnPayment.getStyleClass().add("mfx-button-BorrowBooks-active");
                 break;
             case REGISTER:
-                btnRegisterStudent.getStyleClass().add("mfx-button-RegisterStudent-active");
+                btnRegisterStudent.getStyleClass().add("mfx-button-BookHistory-active");
                 break;
             case SETTINGS:
                 btnSetting.getStyleClass().add("mfx-button-Settings-active");
                 break;
-            case COURSES:
-                btnCourses.getStyleClass().add("mfx-button-Courses-active");
-                break;
+
         }
     }
 
 
-
-
 }
-

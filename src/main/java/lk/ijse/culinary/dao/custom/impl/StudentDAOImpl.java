@@ -2,7 +2,6 @@ package lk.ijse.culinary.dao.custom.impl;
 
 import lk.ijse.culinary.dao.custom.StudentDAO;
 import lk.ijse.culinary.entity.Student;
-import lk.ijse.culinary.entity.User;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -25,8 +24,9 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public void save(Student entity) {
+    public boolean save(Student entity) {
         session.save(entity);
+        return false;
     }
 
     @Override

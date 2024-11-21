@@ -10,6 +10,6 @@ public interface StudentBO extends SuperBO {
     boolean saveStudent(StudentDto dto);
     boolean updateStudent(StudentDto dto);
     boolean deleteStudent(String id);
-    List<StudentDto> getAllStudent();
+     List<StudentDto> getAllStudent();
     boolean isStudentExist(StudentDto dto);
 }

@@ -5,19 +5,34 @@ public class StudentDto {
     private String email;
     private String name;
     private String address;
+    private String course;
     private String contact;
     private String dob;
 
     public StudentDto() {
     }
 
-    public StudentDto(String id,String email, String name, String address, String contact, String dob) {
+    public StudentDto(String id, String email, String name, String address, String course, String contact, String dob) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.address = address;
+        this.course = course;
         this.contact = contact;
         this.dob = dob;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentDto{" +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", course='" + course + '\'' +
+                ", contact='" + contact + '\'' +
+                ", dob='" + dob + '\'' +
+                '}';
     }
 
     public String getId() {
@@ -52,6 +67,14 @@ public class StudentDto {
         this.address = address;
     }
 
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
     public String getContact() {
         return contact;
     }
@@ -66,17 +89,5 @@ public class StudentDto {
 
     public void setDob(String dob) {
         this.dob = dob;
-    }
-
-    @Override
-    public String toString() {
-        return "StudentDto{" +
-                "id='" + id + '\'' +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", contact='" + contact + '\'' +
-                ", dob='" + dob + '\'' +
-                '}';
     }
 }

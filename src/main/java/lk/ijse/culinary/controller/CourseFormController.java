@@ -9,21 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StudentFormController {
-
-    @FXML
-    private AnchorPane StudentPane;
+public class CourseFormController {
 
     @FXML
     private MFXButton btnAdd;
-
-    @FXML
-    private MFXButton btnRemove;
 
     @FXML
     private MFXButton btnSearch;
@@ -32,16 +25,10 @@ public class StudentFormController {
     private MFXButton btnUpdate;
 
     @FXML
-    private TableColumn<?, ?> colAddress;
+    private TableColumn<?, ?> colDuration;
 
     @FXML
-    private TableColumn<?, ?> colContact;
-
-    @FXML
-    private TableColumn<?, ?> colDob;
-
-    @FXML
-    private TableColumn<?, ?> colEmail;
+    private TableColumn<?, ?> colFee;
 
     @FXML
     private TableColumn<?, ?> colId;
@@ -50,15 +37,17 @@ public class StudentFormController {
     private TableColumn<?, ?> colName;
 
     @FXML
-    private TableView<?> tblStudent;
+    private TableColumn<?, ?> colRemove;
+
+    @FXML
+    private TableView<?> tblCourse;
 
     @FXML
     private MFXTextField txtSearch;
-    private StudentFormController studentFormController;
 
     @FXML
     void btnAddOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/studentDataForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/courseDataForm.fxml"));
         Parent rootNode = loader.load();
 
 //        StudentDataFormController studentDataFormController = loader.getController();
@@ -71,19 +60,8 @@ public class StudentFormController {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.centerOnScreen();
-        stage.setTitle("Add User");
+        stage.setTitle("Add Course");
         stage.show();
-    }
-    public void setStudentFormController(StudentFormController studentFormController) {
-        this.studentFormController = studentFormController;
-    }
-//    public void setBtnAndLblName(String action){
-//        btnAdd.setText(action);
-//        lbl.setText(action + " User");
-//    }
-    @FXML
-    void btnRemoveOnAction(ActionEvent event) {
-
     }
 
     @FXML
