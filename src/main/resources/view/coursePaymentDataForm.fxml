@@ -29,17 +29,17 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <MFXTextField fx:id="txtEmail" floatMode="DISABLED" layoutX="252.0" layoutY="148.0" prefHeight="45.0" prefWidth="272.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
+      <MFXTextField fx:id="txtStudentId" floatMode="DISABLED" layoutX="252.0" layoutY="148.0" prefHeight="45.0" prefWidth="272.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
       <MFXTextField fx:id="txtName" floatMode="DISABLED" layoutX="252.0" layoutY="211.0" prefHeight="45.0" prefWidth="272.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
       <MFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="200.0" layoutY="439.0" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PopUpStyles.css" text="Pay" />
       <MFXButton fx:id="btnCancel" buttonType="RAISED" layoutX="357.0" layoutY="439.0" onAction="#btnCancelOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-cancel" stylesheets="@../assets/css/PopUpStyles.css" text="Cancel" />
-      <MFXTextField fx:id="contact" floatMode="DISABLED" layoutX="252.0" layoutY="358.0" prefHeight="45.0" prefWidth="272.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
+      <MFXTextField fx:id="txtpayment" floatMode="DISABLED" layoutX="252.0" layoutY="358.0" prefHeight="45.0" prefWidth="272.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
       <Label layoutX="394.0" layoutY="24.0" styleClass="label-properties" text="Payment ID:">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <MFXFilterComboBox layoutX="252.0" layoutY="289.0" prefHeight="45.0" prefWidth="272.0" />
+      <MFXFilterComboBox fx:id="cmbCourse" layoutX="252.0" layoutY="289.0" prefHeight="45.0" prefWidth="272.0" />
       <Label layoutX="128.0" layoutY="367.0" styleClass="label-properties" text="Payment:">
          <font>
             <Font size="19.0" />

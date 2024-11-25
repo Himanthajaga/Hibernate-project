@@ -24,19 +24,21 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean save(Student entity) {
+    public void save(Student entity) {
         session.save(entity);
-        return false;
+
     }
 
     @Override
     public void update(Student entity) {
         session.update(entity);
+
     }
 
     @Override
     public void delete(Student entity) {
         session.delete(entity);
+
     }
 
     @Override

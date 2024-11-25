@@ -22,19 +22,21 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     @Override
-    public boolean save(Course entity) {
+    public void save(Course entity) {
 
-        return false;
+      session.save(entity);
     }
 
     @Override
     public void update(Course entity) {
 
+       session.update(entity);
     }
 
     @Override
     public void delete(Course entity) {
 
+        session.delete(entity);
     }
 
     @Override

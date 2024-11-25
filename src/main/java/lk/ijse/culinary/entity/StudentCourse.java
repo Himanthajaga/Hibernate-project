@@ -3,7 +3,10 @@ package lk.ijse.culinary.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
@@ -30,6 +33,6 @@ public class StudentCourse {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    @OneToMany(mappedBy = "student_Course", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "studentCourse", cascade = CascadeType.ALL)
     private List<Payment> payments;
 }

@@ -17,19 +17,21 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
     }
 
     @Override
-    public boolean save(StudentCourse entity) {
+    public void save(StudentCourse entity) {
         session.save(entity);
-        return false;
+
     }
 
     @Override
     public void update(StudentCourse entity) {
         session.update(entity);
+
     }
 
     @Override
     public void delete(StudentCourse entity) {
         session.delete(entity);
+
     }
 
     @Override

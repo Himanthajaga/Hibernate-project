@@ -15,11 +15,12 @@ public class SessionFactoryConfig {
     private SessionFactoryConfig() {
         sessionFactory = new Configuration()
                 .mergeProperties(Utility.getProperties())
-//                .addAnnotatedClass(Book.class)
+                .addAnnotatedClass(Student.class)
                 .addAnnotatedClass(Admin.class)
-//                .addAnnotatedClass(BookTransactions.class)
-//                .addAnnotatedClass(Branch.class)
+                .addAnnotatedClass(Course.class)
+                .addAnnotatedClass(Payment.class)
                 .addAnnotatedClass(User.class)
+                .addAnnotatedClass(StudentCourse.class)
                 .buildSessionFactory();
     }
 

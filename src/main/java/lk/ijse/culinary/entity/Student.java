@@ -5,7 +5,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -31,8 +34,10 @@ public class Student {
     @Column(name = "student_dob")
     private String dob;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "student")
-    private List<StudentCourse> courses = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "course")
+    private List<StudentCourse> studentCourses = new ArrayList<>();
 
 
+    public Student(String id, String email, String name, String address, String course, String dob, String contact) {
+    }
 }

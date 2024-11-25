@@ -24,19 +24,21 @@ public class AdminDAOImpl implements AdminDAO {
     }
 
     @Override
-    public boolean save(Admin entity) {
+    public void save(Admin entity) {
       session.save(entity);
-        return false;
+
     }
 
     @Override
     public void update(Admin entity) {
        session.update(entity);
+
     }
 
     @Override
     public void delete(Admin entity) {
         session.delete(entity);
+
     }
 
     @Override

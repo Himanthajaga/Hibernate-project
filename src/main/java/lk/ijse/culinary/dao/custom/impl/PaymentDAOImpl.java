@@ -19,19 +19,20 @@ public class PaymentDAOImpl implements PaymentDAO {
     }
 
     @Override
-    public boolean save(Payment entity) {
+    public void save(Payment entity) {
         session.save(entity);
-        return false;
     }
 
     @Override
     public void update(Payment entity) {
         session.update(entity);
+
     }
 
     @Override
     public void delete(Payment entity) {
         session.delete(entity);
+
     }
 
     @Override

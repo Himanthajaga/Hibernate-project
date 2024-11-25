@@ -23,19 +23,21 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean save(User entity) {
+    public void save(User entity) {
         session.save(entity);
-        return false;
+
     }
 
     @Override
     public void update(User entity)  {
        session.update(entity);
+
     }
 
     @Override
     public void delete(User entity)  {
         session.delete(entity);
+
     }
 
     @Override
