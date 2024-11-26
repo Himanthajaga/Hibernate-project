@@ -12,14 +12,13 @@ import javafx.stage.Stage;
 import lk.ijse.culinary.bo.BOFactory;
 import lk.ijse.culinary.bo.custom.CourseBO;
 import lk.ijse.culinary.bo.custom.StudentBO;
-import lk.ijse.culinary.dto.AdminDto;
 import lk.ijse.culinary.dto.CourseDto;
 import lk.ijse.culinary.dto.StudentDto;
+import lombok.Setter;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class StudentDataFormController {
-
     @FXML
     private MFXButton btnAdd;
 
@@ -27,7 +26,7 @@ public class StudentDataFormController {
     private MFXButton btnCancel;
 
     @FXML
-    private MFXComboBox<?> cmbCourse;
+    private MFXComboBox<String> cmbCourse;
 
     @FXML
     private MFXTextField contact;
@@ -49,77 +48,104 @@ public class StudentDataFormController {
 
     @FXML
     private MFXTextField txtName;
-    StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.STUDENT);
-    CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.COURSE);
 
-    void initialize() {
-       generateStudentId();
-         loadCourses();
-    }
+    @Setter
+    private StudentFormController studentFormController;
+    @Setter
+    private Consumer<Void> onCloseCallback;
 
-    private void generateStudentId() {
+    private StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.STUDENT);
+
+    public void initialize() {
+        loadCourses();
         try {
-            String newStudentId = studentBO.getNewStudentId();
+            String newStudentId = studentBO.getNewStudentId(String.valueOf(new StudentDto()));
             lblstudentId.setText(newStudentId);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public void setOnCloseCallback(Consumer<Void> onCloseCallback) {
+        this.onCloseCallback = onCloseCallback;
+    }
+
     private void loadCourses() {
         try {
-            List<CourseDto> courseDtoList = courseBO.getAllCourse();
-            for (CourseDto courseDto : courseDtoList) {
+            CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.COURSE);
+            cmbCourse.getItems().clear();
+            for (CourseDto courseDto : courseBO.getAllCourse()) {
                 cmbCourse.getItems().add(courseDto.getCourseName());
-            }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        // Retrieve input values
-        String studentId = lblstudentId.getText();
-        String email = txtEmail.getText();
-        String name = txtName.getText();
-        String address = txtAddress.getText();
-        String course = cmbCourse.getSelectionModel().getSelectedItem().toString();
-        String dob = dateofbirth.getText();
-        String contactNo = contact.getText();
-
-
-        // Validate input fields
-        if (studentId.trim().isEmpty() || email.trim().isEmpty() || name.trim().isEmpty() || address.trim().isEmpty() || course.trim().isEmpty() || dob.trim().isEmpty() || contactNo.trim().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Please fill all the fields").show();
+        if (!validateInputFields()) {
             return;
         }
 
-        // Create a StudentDTO object
-        StudentDto studentDto = new StudentDto(studentId, email, name, address, course, dob, contactNo);
+        String studentId = lblstudentId.getText();
+        String studentName = txtName.getText();
+        String studentEmail = txtEmail.getText();
+        String studentAddress = txtAddress.getText();
+        String studentCourse = cmbCourse.getSelectedItem();
+        String studentContact = contact.getText();
+        String studentDob = dateofbirth.getValue().toString();
 
-        // Save the student
+        StudentDto studentDto = new StudentDto(
+                studentId,
+                studentName,
+                studentAddress,
+                studentDob,
+                studentEmail,
+                studentContact,
+                studentCourse
+        );
+
         try {
-            boolean isSaved = studentBO.saveStudent(studentDto);
-            if (isSaved) {
-                clearFields();
-                new Alert(Alert.AlertType.CONFIRMATION, "Student saved successfully").show();
+            boolean isAdded = studentBO.saveStudent(studentDto);
+
+            if (isAdded) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Student Added Successfully").show();
+                if (studentFormController != null) {
+                    studentFormController.refreshTable();
+                }
+                closeTheWindow();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Failed to save the student").show();
+                new Alert(Alert.AlertType.ERROR, "Failed to add the student").show();
             }
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, "An error occurred: " + e.getMessage()).show();
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Failed to add the student").show();
         }
     }
 
-    private void clearFields() {
-        lblstudentId.setText("");
-        txtEmail.clear();
-        txtName.clear();
-        txtAddress.clear();
-        cmbCourse.getSelectionModel().clearSelection();
-        dateofbirth.clear();
-        contact.clear();
+    private boolean validateInputFields() {
+        String studentEmail = txtEmail.getText();
+        String studentName = txtName.getText();
+        String studentAddress = txtAddress.getText();
+        String studentCourse = cmbCourse.getSelectionModel().getSelectedItem();
+        String studentContact = contact.getText();
+        String studentDob = dateofbirth.getValue().toString();
+
+        if (studentEmail.trim().isEmpty() || studentName.trim().isEmpty() || studentAddress.trim().isEmpty() || studentCourse == null || studentContact.trim().isEmpty() || studentDob.trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please fill all the fields").show();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void closeTheWindow() {
+        if (onCloseCallback != null) {
+            onCloseCallback.accept(null);
+        }
+        Stage stage = (Stage) lblstudentId.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -127,14 +153,13 @@ public class StudentDataFormController {
         closeTheWindow();
     }
 
-    private void closeTheWindow() {
-        Stage userDataStage= (Stage) lblstudentId.getScene().getWindow();
-        userDataStage.close();
-    }
-
     @FXML
     void cmbCourseOnAction(ActionEvent event) {
-
+        String selectedCourse = cmbCourse.getSelectionModel().getSelectedItem();
+        if (selectedCourse != null) {
+            System.out.println("Selected course: " + selectedCourse);
+        } else {
+            new Alert(Alert.AlertType.ERROR, "No course selected").show();
+        }
     }
-
 }

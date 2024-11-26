@@ -17,19 +17,20 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <MFXButton buttonType="RAISED" layoutX="676.0" layoutY="143.0" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" text="Add" />
-      <TableView fx:id="tblUser" focusTraversable="false" layoutX="37.0" layoutY="207.0" prefHeight="433.0" prefWidth="749.0" stylesheets="@../assets/css/TableStyle.css">
+      <MFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="676.0" layoutY="143.0" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" text="Add" />
+      <TableView fx:id="tblPayment" focusTraversable="false" layoutX="37.0" layoutY="207.0" prefHeight="433.0" prefWidth="749.0" stylesheets="@../assets/css/TableStyle.css">
          <columns>
-            <TableColumn fx:id="colName" prefWidth="96.0" style="-fx-alignment: center;" text="ID" />
-            <TableColumn fx:id="colEmail" prefWidth="136.0" style="-fx-alignment: center;" text="Name" />
-            <TableColumn fx:id="colAddress" prefWidth="128.0" style="-fx-alignment: center;" text="Course" />
-            <TableColumn fx:id="colContact" prefWidth="125.0" style="-fx-alignment: center;" text="Payment ID" />
-            <TableColumn fx:id="colDob" minWidth="0.0" prefWidth="125.0" style="-fx-alignment: center;" text="Payment" />
-            <TableColumn fx:id="colId" minWidth="0.0" prefWidth="125.0" style="-fx-alignment: center;" text="Payment Date" />
+            <TableColumn fx:id="colID" prefWidth="78.0" style="-fx-alignment: center;" text="Student ID" />
+            <TableColumn fx:id="colName" prefWidth="113.0" style="-fx-alignment: center;" text="Name" />
+            <TableColumn fx:id="colCourseId" prefWidth="104.0" style="-fx-alignment: center;" text="CourseID" />
+            <TableColumn fx:id="colPaymentID" prefWidth="116.0" style="-fx-alignment: center;" text="Payment ID" />
+            <TableColumn fx:id="colPayAmount" minWidth="0.0" prefWidth="127.0" style="-fx-alignment: center;" text="Payment" />
+            <TableColumn fx:id="colPayDate" minWidth="0.0" prefWidth="117.0" style="-fx-alignment: center;" text="Payment Date" />
+            <TableColumn fx:id="colRemove" minWidth="0.0" prefWidth="103.0" style="-fx-alignment: center;" text="Remove" />
          </columns>
       </TableView>
       <MFXTextField fx:id="txtSearch" floatMode="DISABLED" floatingText="Search" layoutX="37.0" layoutY="140.0" prefHeight="45.0" prefWidth="175.0" promptText="Search" styleClass="mfx-text-field-details" />
-      <MFXButton buttonType="RAISED" layoutX="248.0" layoutY="143.0" onAction="#btnSearchOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PageStyles.css" text="Search">
+      <MFXButton fx:id="btnSearch" buttonType="RAISED" layoutX="248.0" layoutY="143.0" onAction="#btnSearchOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PageStyles.css" text="Search">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -38,18 +39,6 @@
             </ImageView>
          </graphic>
       </MFXButton>
-      <MFXButton fx:id="btnRemove" buttonType="RAISED" layoutX="532.0" layoutY="143.0" onAction="#btnRemoveOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" text="Remove" />
-      <MFXButton fx:id="btnRemove1" buttonType="RAISED" layoutX="389.0" layoutY="143.0" onAction="#btnRemoveOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" text="Update" />
-      <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="400.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/images/edit.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="18.0" fitWidth="27.0" layoutX="538.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/images/remove.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="18.0" fitWidth="27.0" layoutX="685.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/images/add.png" />

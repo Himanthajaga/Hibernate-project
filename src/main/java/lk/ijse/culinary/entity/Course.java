@@ -1,11 +1,12 @@
 package lk.ijse.culinary.entity;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import lombok.*;
 
 import javax.persistence.*;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @Data
 @ToString
 @Getter
@@ -14,8 +15,7 @@ import javax.persistence.*;
 @Table(name = "course")
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "course_ID")
+    @Column(name = "course_ID",length = 10)
     private String courseID;
 
 
@@ -26,5 +26,6 @@ public class Course {
     private String courseDuration;
     @Column(name = "course_Fee")
     private Double courseFee;
+
 
 }

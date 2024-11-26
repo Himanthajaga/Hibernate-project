@@ -1,3 +1,4 @@
+// CourseDataFormController.java
 package lk.ijse.culinary.controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -9,12 +10,12 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import lk.ijse.culinary.bo.BOFactory;
 import lk.ijse.culinary.bo.custom.CourseBO;
-import lk.ijse.culinary.dao.custom.CourseDAO;
 import lk.ijse.culinary.dto.CourseDto;
-import lk.ijse.culinary.entity.Course;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class CourseDataFormController {
 
@@ -32,20 +33,39 @@ public class CourseDataFormController {
 
     @FXML
     private MFXTextField txtCourseFee;
-
     @FXML
-    private MFXTextField txtCourseId;
-
+    private Label lblCourseID;
     @FXML
     private MFXTextField txtCourseName;
     private List<CourseDto> courseList = new ArrayList<>();
+    @Setter
+    private CourseFormController courseFormController;
+    private Consumer<Void> onCloseCallback;
 
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.COURSE);
+
+    public void setOnCloseCallback(Consumer<Void> onCloseCallback) {
+        this.onCloseCallback = onCloseCallback;
+    }
+
+    public void initialize() {
+        generateCourseID();
+    }
+
+    private void generateCourseID() {
+        try {
+            CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.COURSE);
+            String newCoursetId = courseBO.generateNextId();
+            lblCourseID.setText(newCoursetId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void btnAddOnction(ActionEvent event) {
         // Retrieve input values
-        String courseId = txtCourseId.getText();
+        String courseId = lblCourseID.getText();
         String courseName = txtCourseName.getText();
         String courseDuration = txtCourseDuration.getText();
         String courseFeeText = txtCourseFee.getText();
@@ -73,7 +93,10 @@ public class CourseDataFormController {
             boolean isAdded = courseBO.saveCourse(courseDto);
 
             if (isAdded) {
+                generateCourseID();
                 new Alert(Alert.AlertType.CONFIRMATION, "Course Added Successfully").show();
+                courseFormController.addNewCourse(courseDto); // Use the instance method
+                closeTheWindow();
 
                 clearFields();
             } else {
@@ -83,11 +106,10 @@ public class CourseDataFormController {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "An error occurred while adding the course").show();
         }
-
     }
 
     private void clearFields() {
-        txtCourseId.clear();
+        lblCourseID.setText("");
         txtCourseName.clear();
         txtCourseDuration.clear();
         txtCourseFee.clear();
@@ -95,12 +117,14 @@ public class CourseDataFormController {
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
-       closeTheWindow();
+        closeTheWindow();
     }
 
     private void closeTheWindow() {
-        Stage userDataStage= (Stage) txtCourseId.getScene().getWindow();
-        userDataStage.close();
+        if (onCloseCallback != null) {
+            onCloseCallback.accept(null);
+        }
+        Stage stage = (Stage) btnCancel.getScene().getWindow();
+        stage.close();
     }
-
 }

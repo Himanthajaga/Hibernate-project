@@ -6,6 +6,6 @@ import lk.ijse.culinary.entity.Student;
 import java.util.List;
 
 public interface StudentDAO extends CrudDAO<Student> {
-    List<Student> getStudentsWithOverdueBooks();
-    int updateStudentEmail(String email,String oldEmail);
+    Student searchByContact(String id);
+    List<Student> searchByContact2(String id);
 }

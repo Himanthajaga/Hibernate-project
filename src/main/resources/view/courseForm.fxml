@@ -37,15 +37,6 @@
             </ImageView>
          </graphic>
       </MFXButton>
-      <MFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="379.0" layoutY="130.0" onAction="#btnUpdateOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PageStyles.css" text="Update">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/images/edit.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </MFXButton>
       <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="518.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/images/add.png" />

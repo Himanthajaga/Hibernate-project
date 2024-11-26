@@ -46,6 +46,16 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public String generateNextId() {
+        return null;
+    }
+
+    @Override
+    public List<String> getIds() {
+        return null;
+    }
+
+    @Override
     public List<User> getUsersWithOverdueBooks() {
         String hql = "SELECT u FROM User u JOIN u.bookTransactions t WHERE t.returnDate < CURRENT_DATE AND t.isReturned = false";
         Query query = session.createQuery(hql);

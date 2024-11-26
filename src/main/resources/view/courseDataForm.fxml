@@ -28,7 +28,6 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <MFXTextField fx:id="txtCourseId" floatMode="DISABLED" layoutX="191.0" layoutY="118.0" prefHeight="45.0" prefWidth="197.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
       <MFXTextField fx:id="txtCourseName" floatMode="DISABLED" layoutX="191.0" layoutY="180.0" prefHeight="45.0" prefWidth="197.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
       <MFXTextField fx:id="txtCourseDuration" floatMode="DISABLED" layoutX="191.0" layoutY="247.0" prefHeight="45.0" prefWidth="197.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
       <MFXTextField fx:id="txtCourseFee" floatMode="DISABLED" layoutX="191.0" layoutY="313.0" prefHeight="45.0" prefWidth="197.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
@@ -39,5 +38,6 @@
             <Font size="30.0" />
          </font>
       </Label>
+      <Label fx:id="lblCourseID" layoutX="191.0" layoutY="119.0" prefHeight="45.0" prefWidth="197.0" />
    </children>
 </AnchorPane>

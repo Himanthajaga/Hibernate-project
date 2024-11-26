@@ -4,68 +4,66 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
+import lk.ijse.culinary.bo.BOFactory;
+import lk.ijse.culinary.bo.custom.CourseBO;
+import lk.ijse.culinary.bo.custom.PaymentBO;
+import lk.ijse.culinary.bo.custom.StudentBO;
+import lk.ijse.culinary.bo.custom.StudentCourseBO;
+import lk.ijse.culinary.dto.PaymentDto;
+import lk.ijse.culinary.dto.StudentDto;
+import lk.ijse.culinary.tm.PaymentTm;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CoursePaymentFormController {
 
     @FXML
-    private MFXButton btnRemove;
+    private MFXButton btnAdd;
 
     @FXML
-    private MFXButton btnRemove1;
+    private MFXButton btnSearch;
 
     @FXML
-    private TableColumn<?, ?> colAddress;
+    private TableColumn<PaymentTm,String> colCourseId;
 
     @FXML
-    private TableColumn<?, ?> colContact;
+    private TableColumn<PaymentTm,String> colID;
 
     @FXML
-    private TableColumn<?, ?> colDob;
+    private TableColumn<PaymentTm,String> colName;
 
     @FXML
-    private TableColumn<?, ?> colEmail;
+    private TableColumn<PaymentTm,String> colPayAmount;
 
     @FXML
-    private TableColumn<?, ?> colId;
+    private TableColumn<PaymentTm,String> colPayDate;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<PaymentTm,String> colPaymentID;
 
     @FXML
-    private TableView<?> tblUser;
+    private TableColumn<PaymentTm,String> colRemove;
+
+    @FXML
+    private TableView<PaymentTm> tblPayment;
 
     @FXML
     private MFXTextField txtSearch;
-
-    @FXML
-    void btnAddOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/coursePaymentDataForm.fxml"));
-        Parent rootNode = loader.load();
-
-//        StudentDataFormController studentDataFormController = loader.getController();
-//        studentDataFormController.setS(this);
-//        //Set Button Name
-//        studentDataFormController.setBtnAndLblName("Add");
-
-
-        Scene scene = new Scene(rootNode);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.setTitle("Add Payment");
-        stage.show();
+    private List<PaymentDto> paymenttList = new ArrayList<>();
+    StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.STUDENT);
+    CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.COURSE);
+    PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.PAYMENT);
+    StudentCourseBO studentCourseBO = (StudentCourseBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.STUDENT_COURSE);
+    public void initialize(){
+        refreshTable();
+        fetchAllPayments();
+        setCellValueFactory();
     }
-
     @FXML
-    void btnRemoveOnAction(ActionEvent event) {
+    void btnAddOnAction(ActionEvent event) {
 
     }
 

@@ -46,6 +46,10 @@
 .table-row-cell:odd:filled:selected {
     -fx-background: -fx-control-inner-background-alt ;
 }
+.table-row-cell:selected {
+    -fx-background-color: #d29e98; /* Light red background */
+    -fx-text-fill: black; /* Black text color */
+}
 
 .table-view:focused {
     -fx-focus-color: transparent;

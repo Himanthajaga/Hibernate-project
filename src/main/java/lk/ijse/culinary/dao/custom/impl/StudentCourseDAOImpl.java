@@ -40,6 +40,16 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
     }
 
     @Override
+    public String generateNextId() {
+        return null;
+    }
+
+    @Override
+    public List<String> getIds() {
+        return null;
+    }
+
+    @Override
     public void setSession(Session session) {
         this.session = session;
     }

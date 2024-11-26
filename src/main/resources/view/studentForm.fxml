@@ -28,12 +28,13 @@
       </MFXButton>
       <TableView fx:id="tblStudent" focusTraversable="false" layoutX="27.0" layoutY="197.0" prefHeight="433.0" prefWidth="749.0" stylesheets="@../assets/css/TableStyle.css">
          <columns>
-            <TableColumn fx:id="colName" prefWidth="96.0" style="-fx-alignment: center;" text="Name" />
-            <TableColumn fx:id="colEmail" prefWidth="136.0" style="-fx-alignment: center;" text="Email" />
-            <TableColumn fx:id="colAddress" prefWidth="128.0" style="-fx-alignment: center;" text="Address" />
-            <TableColumn fx:id="colContact" prefWidth="125.0" style="-fx-alignment: center;" text="Contact" />
-            <TableColumn fx:id="colDob" minWidth="0.0" prefWidth="125.0" style="-fx-alignment: center;" text="DOB" />
-            <TableColumn fx:id="colId" minWidth="0.0" prefWidth="125.0" style="-fx-alignment: center;" text="ID" />
+            <TableColumn fx:id="colName" prefWidth="113.0" style="-fx-alignment: center;" text="Name" />
+            <TableColumn fx:id="colEmail" prefWidth="114.0" style="-fx-alignment: center;" text="Email" />
+            <TableColumn fx:id="colAddress" prefWidth="126.0" style="-fx-alignment: center;" text="Address" />
+            <TableColumn fx:id="colContact" prefWidth="114.0" style="-fx-alignment: center;" text="Contact" />
+            <TableColumn fx:id="colDob" minWidth="0.0" prefWidth="115.0" style="-fx-alignment: center;" text="DOB" />
+            <TableColumn fx:id="colId" minWidth="0.0" prefWidth="88.0" style="-fx-alignment: center;" text="ID" />
+            <TableColumn fx:id="colRemove" minWidth="0.0" prefWidth="87.0" style="-fx-alignment: center;" text="Remove" />
          </columns>
       </TableView>
       <MFXTextField fx:id="txtSearch" floatMode="DISABLED" floatingText="Search" layoutX="27.0" layoutY="130.0" prefHeight="45.0" prefWidth="175.0" promptText="Search" styleClass="mfx-text-field-details" />
@@ -42,24 +43,6 @@
             <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/images/search.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </MFXButton>
-      <MFXButton fx:id="btnRemove" buttonType="RAISED" layoutX="522.0" layoutY="133.0" onAction="#btnRemoveOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" text="Remove">
-         <graphic>
-            <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/images/remove.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </MFXButton>
-      <MFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="385.0" layoutY="133.0" onAction="#btnUpdateOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" text="Update">
-         <graphic>
-            <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/images/edit.png" />
                </image>
             </ImageView>
          </graphic>
