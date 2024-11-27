@@ -7,7 +7,12 @@
     -fx-font-family: 'Open Sans Bold';
 }
 
-
+.date-label {
+    -fx-font-size: 60px; /* Adjust the font size as needed */
+}
+.time-label {
+    -fx-font-size: 40px; /* Adjust the font size as needed */
+}
 
 .pane-admin-details{
     -fx-font-family: 'Open Sans';

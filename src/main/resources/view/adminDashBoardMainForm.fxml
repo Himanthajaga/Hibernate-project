@@ -67,18 +67,6 @@
                         <Insets left="35.0" />
                      </padding>
                   </MFXButton>
-                  <MFXButton fx:id="btnPayment" alignment="BASELINE_LEFT" onAction="#btnPaymentsOnAction" prefHeight="51.0" prefWidth="197.0" styleClass="mfx-button-BorrowBooks" text="Payments">
-                     <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/images/borrowBooks-gray.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <padding>
-                        <Insets left="35.0" />
-                     </padding>
-                  </MFXButton>
                </children>
             </VBox>
             <Label layoutX="49.0" layoutY="44.0" styleClass="label-hostel" text="Kitchen">

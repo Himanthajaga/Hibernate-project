@@ -23,11 +23,10 @@
             <TableColumn fx:id="colID" style="-fx-alignment: center;" text="PaymentID" />
             <TableColumn fx:id="colUpFrontpay" prefWidth="129.0" style="-fx-alignment: center;" text="Balance Payment" />
             <TableColumn fx:id="ColBalancePay" prefWidth="125.0" style="-fx-alignment: center;" text="UpFront Payment" />
-            <TableColumn fx:id="ColCourseID" style="-fx-alignment: center;" text="CourseID" />
-            <TableColumn fx:id="ColStudentEmail" minWidth="0.0" prefWidth="105.0" style="-fx-alignment: center;" text="Student Email" />
-            <TableColumn fx:id="colStatus" minWidth="0.0" prefWidth="78.0" style="-fx-alignment: center;" text="Status" />
-            <TableColumn fx:id="ColStudentCourseID" minWidth="0.0" prefWidth="83.0" style="-fx-alignment: center;" text="Stu_Cou_ID" />
-            <TableColumn fx:id="colRemove" minWidth="0.0" prefWidth="68.0" style="-fx-alignment: center;" text="Remove" />
+            <TableColumn fx:id="ColCourseID" prefWidth="95.0" style="-fx-alignment: center;" text="CourseID" />
+            <TableColumn fx:id="ColStudentEmail" minWidth="0.0" prefWidth="132.0" style="-fx-alignment: center;" text="Student Email" />
+            <TableColumn fx:id="colStatus" minWidth="0.0" prefWidth="105.0" style="-fx-alignment: center;" text="Status" />
+            <TableColumn fx:id="colRemove" minWidth="0.0" prefWidth="82.0" style="-fx-alignment: center;" text="Remove" />
          </columns>
       </TableView>
       <MFXTextField fx:id="txtSearch" floatMode="DISABLED" floatingText="Search" layoutX="37.0" layoutY="140.0" prefHeight="45.0" prefWidth="175.0" promptText="Search" styleClass="mfx-text-field-details" />

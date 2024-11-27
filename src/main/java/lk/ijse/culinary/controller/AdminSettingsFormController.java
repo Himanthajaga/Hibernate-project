@@ -21,6 +21,7 @@ import lk.ijse.culinary.bo.BOFactory;
 import lk.ijse.culinary.bo.custom.AdminBO;
 import lk.ijse.culinary.bo.custom.impl.AdminBOImpl;
 import lk.ijse.culinary.dto.AdminDto;
+import lk.ijse.culinary.util.PasswordUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -96,8 +97,9 @@ public class AdminSettingsFormController {
         }
 
         String imgUrl = imageSave();
+        String encryptedPassword = PasswordUtil.encryptPassword(txtPassword.getText());
 
-        AdminDto adminDto = new AdminDto(txtUsername.getText(), txtPassword.getText(),imgUrl);
+        AdminDto adminDto = new AdminDto(txtUsername.getText(), encryptedPassword, imgUrl);
         boolean isSaved = adminBO.updateAdmin(adminDto);
         if (isSaved) {
             updateAdminDetails(adminDto);
