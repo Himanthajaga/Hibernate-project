@@ -3,10 +3,7 @@ package lk.ijse.culinary.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
@@ -18,7 +15,6 @@ import java.util.List;
 @Table(name = "student_course")
 public class StudentCourse {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_course_ID")
     private Long studentCourseID;
 
@@ -35,4 +31,25 @@ public class StudentCourse {
 
     @OneToMany(mappedBy = "studentCourse", cascade = CascadeType.ALL)
     private List<Payment> payments;
+
+    public StudentCourse(String courseId, Date date, Student student, Course course) {
+        this.registrationDate = date;
+        this.student = student;
+        this.course = course;
+    }
+
+    public StudentCourse(long l, Date date, Student student, Course course) {
+        this.studentCourseID = l;
+        this.registrationDate = date;
+        this.student = student;
+        this.course = course;
+    }
+
+    public String getCourseName() {
+        return course.getCourseName();
+    }
+
+    public String getCourseID() {
+        return course.getCourseID();
+    }
 }

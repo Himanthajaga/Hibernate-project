@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Label?>
@@ -9,38 +10,37 @@
 
 <AnchorPane prefHeight="550.0" prefWidth="653.0" stylesheets="@../assets/css/PopUpStyles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.culinary.controller.CoursePaymentDataFormController">
    <children>
-      <Label layoutX="27.0" layoutY="52.0" styleClass="label-dashboard" stylesheets="@../assets/css/PageStyles.css" text="Course Payment">
+      <Label layoutX="27.0" layoutY="15.0" styleClass="label-dashboard" stylesheets="@../assets/css/PageStyles.css" text="Course Payment">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label layoutX="128.0" layoutY="157.0" styleClass="label-properties" text="Student ID:">
+      <Label layoutX="-1.0" layoutY="146.0" styleClass="label-properties" text="Student Email:">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="128.0" layoutY="234.0" styleClass="label-properties" text="Name">
+      <Label layoutX="16.0" layoutY="208.0" styleClass="label-properties" text="Name">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="128.0" layoutY="306.0" styleClass="label-properties" text="Course:">
+      <Label layoutX="5.0" layoutY="286.0" styleClass="label-properties" text="Course ID:">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <MFXTextField fx:id="txtStudentId" floatMode="DISABLED" layoutX="252.0" layoutY="148.0" prefHeight="45.0" prefWidth="272.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
-      <MFXTextField fx:id="txtName" floatMode="DISABLED" layoutX="252.0" layoutY="211.0" prefHeight="45.0" prefWidth="272.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
-      <MFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="200.0" layoutY="439.0" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PopUpStyles.css" text="Pay" />
-      <MFXButton fx:id="btnCancel" buttonType="RAISED" layoutX="357.0" layoutY="439.0" onAction="#btnCancelOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-cancel" stylesheets="@../assets/css/PopUpStyles.css" text="Cancel" />
-      <MFXTextField fx:id="txtpayment" floatMode="DISABLED" layoutX="252.0" layoutY="358.0" prefHeight="45.0" prefWidth="272.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
+      <MFXTextField fx:id="txtName" floatMode="DISABLED" layoutX="123.0" layoutY="202.0" prefHeight="45.0" prefWidth="206.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
+      <MFXButton fx:id="btnPay" buttonType="RAISED" layoutX="350.0" layoutY="398.0" onAction="#btnPayOnAction" prefHeight="40.0" prefWidth="293.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PopUpStyles.css" text="Pay" />
+      <MFXButton fx:id="btnCancel" buttonType="RAISED" layoutX="350.0" layoutY="476.0" onAction="#btnCancelOnAction" prefHeight="40.0" prefWidth="293.0" styleClass="mfx-button-cancel" stylesheets="@../assets/css/PopUpStyles.css" text="Cancel" />
+      <MFXTextField fx:id="txtAmount" floatMode="DISABLED" layoutX="124.0" layoutY="401.0" prefHeight="45.0" prefWidth="206.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
       <Label layoutX="394.0" layoutY="24.0" styleClass="label-properties" text="Payment ID:">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <MFXFilterComboBox fx:id="cmbCourse" layoutX="252.0" layoutY="289.0" prefHeight="45.0" prefWidth="272.0" />
-      <Label layoutX="128.0" layoutY="367.0" styleClass="label-properties" text="Payment:">
+      <MFXFilterComboBox fx:id="cmbCourse" layoutX="123.0" layoutY="281.0" onAction="#cmbCourseOnAction" prefHeight="45.0" prefWidth="206.0" />
+      <Label layoutX="15.0" layoutY="405.0" styleClass="label-properties" text="Amount">
          <font>
             <Font size="19.0" />
          </font>
@@ -50,5 +50,30 @@
             <Font size="19.0" />
          </font>
       </Label>
+      <MFXFilterComboBox fx:id="cmbStudentEmail" layoutX="123.0" layoutY="136.0" onAction="#cmbStudentEmailOnAction" prefHeight="45.0" prefWidth="206.0" />
+      <Label layoutX="1.0" layoutY="345.0" styleClass="label-properties" text="Course Fee">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="txtCourseFee" floatMode="DISABLED" layoutX="123.0" layoutY="339.0" prefHeight="45.0" prefWidth="206.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
+      <MFXDatePicker fx:id="Date" layoutX="127.0" layoutY="69.0" />
+      <Label layoutX="21.0" layoutY="76.0" styleClass="label-properties" text="Date">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="txtStatus" floatMode="DISABLED" layoutX="125.0" layoutY="468.0" prefHeight="45.0" prefWidth="206.0" styleClass="mfx-text-field" stylesheets="@../assets/css/PopUpStyles.css" />
+      <Label layoutX="16.0" layoutY="472.0" styleClass="label-properties" text="Status">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPayDate" layoutX="510.0" layoutY="374.0" prefHeight="28.0" prefWidth="132.0" styleClass="label-properties">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <MFXButton fx:id="btnConfirm" buttonType="RAISED" layoutX="390.0" layoutY="325.0" onAction="#btnConfirmOnAction" prefHeight="40.0" prefWidth="221.0" styleClass="mfx-button-add" stylesheets="@../assets/css/PopUpStyles.css" text="Confirm" />
    </children>
 </AnchorPane>

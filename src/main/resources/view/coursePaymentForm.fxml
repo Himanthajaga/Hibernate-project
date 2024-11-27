@@ -20,13 +20,14 @@
       <MFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="676.0" layoutY="143.0" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="110.0" styleClass="mfx-button-add" text="Add" />
       <TableView fx:id="tblPayment" focusTraversable="false" layoutX="37.0" layoutY="207.0" prefHeight="433.0" prefWidth="749.0" stylesheets="@../assets/css/TableStyle.css">
          <columns>
-            <TableColumn fx:id="colID" prefWidth="78.0" style="-fx-alignment: center;" text="Student ID" />
-            <TableColumn fx:id="colName" prefWidth="113.0" style="-fx-alignment: center;" text="Name" />
-            <TableColumn fx:id="colCourseId" prefWidth="104.0" style="-fx-alignment: center;" text="CourseID" />
-            <TableColumn fx:id="colPaymentID" prefWidth="116.0" style="-fx-alignment: center;" text="Payment ID" />
-            <TableColumn fx:id="colPayAmount" minWidth="0.0" prefWidth="127.0" style="-fx-alignment: center;" text="Payment" />
-            <TableColumn fx:id="colPayDate" minWidth="0.0" prefWidth="117.0" style="-fx-alignment: center;" text="Payment Date" />
-            <TableColumn fx:id="colRemove" minWidth="0.0" prefWidth="103.0" style="-fx-alignment: center;" text="Remove" />
+            <TableColumn fx:id="colID" style="-fx-alignment: center;" text="PaymentID" />
+            <TableColumn fx:id="colUpFrontpay" prefWidth="129.0" style="-fx-alignment: center;" text="Balance Payment" />
+            <TableColumn fx:id="ColBalancePay" prefWidth="125.0" style="-fx-alignment: center;" text="UpFront Payment" />
+            <TableColumn fx:id="ColCourseID" style="-fx-alignment: center;" text="CourseID" />
+            <TableColumn fx:id="ColStudentEmail" minWidth="0.0" prefWidth="105.0" style="-fx-alignment: center;" text="Student Email" />
+            <TableColumn fx:id="colStatus" minWidth="0.0" prefWidth="78.0" style="-fx-alignment: center;" text="Status" />
+            <TableColumn fx:id="ColStudentCourseID" minWidth="0.0" prefWidth="83.0" style="-fx-alignment: center;" text="Stu_Cou_ID" />
+            <TableColumn fx:id="colRemove" minWidth="0.0" prefWidth="68.0" style="-fx-alignment: center;" text="Remove" />
          </columns>
       </TableView>
       <MFXTextField fx:id="txtSearch" floatMode="DISABLED" floatingText="Search" layoutX="37.0" layoutY="140.0" prefHeight="45.0" prefWidth="175.0" promptText="Search" styleClass="mfx-text-field-details" />

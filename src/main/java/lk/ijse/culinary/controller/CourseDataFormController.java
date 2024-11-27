@@ -65,47 +65,63 @@ public class CourseDataFormController {
     @FXML
     void btnAddOnction(ActionEvent event) {
         // Retrieve input values
-        String courseId = lblCourseID.getText();
-        String courseName = txtCourseName.getText();
-        String courseDuration = txtCourseDuration.getText();
-        String courseFeeText = txtCourseFee.getText();
+        if (validateFields()) {
+            String courseId = lblCourseID.getText();
+            String courseName = txtCourseName.getText();
+            String courseDuration = txtCourseDuration.getText();
+            String courseFeeText = txtCourseFee.getText();
 
-        // Validate input fields
-        if (courseId.trim().isEmpty() || courseName.trim().isEmpty() || courseDuration.trim().isEmpty() || courseFeeText.trim().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Please fill all the fields").show();
-            return;
-        }
-
-        // Parse course fee
-        double courseFee;
-        try {
-            courseFee = Double.parseDouble(courseFeeText);
-        } catch (NumberFormatException e) {
-            new Alert(Alert.AlertType.ERROR, "Invalid course fee").show();
-            return;
-        }
-
-        // Create CourseDto object
-        CourseDto courseDto = new CourseDto(courseId, courseName, courseDuration, courseFee);
-
-        // Save course using CourseBO
-        try {
-            boolean isAdded = courseBO.saveCourse(courseDto);
-
-            if (isAdded) {
-                generateCourseID();
-                new Alert(Alert.AlertType.CONFIRMATION, "Course Added Successfully").show();
-                courseFormController.addNewCourse(courseDto); // Use the instance method
-                closeTheWindow();
-
-                clearFields();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Failed to add the course").show();
+            // Validate input fields
+            if (courseId.trim().isEmpty() || courseName.trim().isEmpty() || courseDuration.trim().isEmpty() || courseFeeText.trim().isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Please fill all the fields").show();
+                return;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "An error occurred while adding the course").show();
+
+            // Parse course fee
+            double courseFee;
+            try {
+                courseFee = Double.parseDouble(courseFeeText);
+            } catch (NumberFormatException e) {
+                new Alert(Alert.AlertType.ERROR, "Invalid course fee").show();
+                return;
+            }
+
+            // Create CourseDto object
+            CourseDto courseDto = new CourseDto(courseId, courseName, courseDuration, courseFee);
+
+            // Save course using CourseBO
+            try {
+                boolean isAdded = courseBO.saveCourse(courseDto);
+
+                if (isAdded) {
+                    generateCourseID();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Course Added Successfully").show();
+                    courseFormController.addNewCourse(courseDto); // Use the instance method
+                    closeTheWindow();
+
+                    clearFields();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Failed to add the course").show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "An error occurred while adding the course").show();
+            }
         }
+    }
+
+    private boolean validateFields() {
+        if (txtCourseName.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Course name is empty").show();
+            return false;
+        } else if (txtCourseDuration.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Course duration is empty").show();
+            return false;
+        } else if (txtCourseFee.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Course fee is empty").show();
+            return false;
+        }
+        return true;
     }
 
     private void clearFields() {

@@ -1,46 +1,117 @@
+// Payment.java
 package lk.ijse.culinary.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.*;
-import java.sql.Date;
-@NoArgsConstructor
-@AllArgsConstructor
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 @Data
+
+@NoArgsConstructor
 @Entity
-@Table(name = "payment")
 public class Payment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "payment_ID")
-    private Long paymentID;
+    private String payment_ID;
+    private LocalDate paymentDate;
+    private double payamount;
+    private String status;
+    private double upfrontAmount;
+    private double balanceAmount;
+    private String courseID;
+    private String studentEmail;
 
     @ManyToOne
-    @JoinColumn(name = "student_course_id")
+    @JoinColumn(name = "studentCourse_ID")
     private StudentCourse studentCourse;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    // Constructor
+    public Payment(String payment_ID, LocalDate paymentDate, double payamount, String status, double upfrontAmount, double balanceAmount, String courseID, String studentEmail, StudentCourse studentCourse) {
+        this.payment_ID = payment_ID;
+        this.paymentDate = paymentDate;
+        this.payamount = payamount;
+        this.status = status;
+        this.upfrontAmount = upfrontAmount;
+        this.balanceAmount = balanceAmount;
+        this.courseID = courseID;
+        this.studentEmail = studentEmail;
+        this.studentCourse = studentCourse;
+    }
 
-    @Column(name = "payment")
-    private Double payment;
+    // Getters and setters
+    public String getPaymentID() {
+        return payment_ID;
+    }
 
-    @Column(name = "payment_date")
-    private Date paymentDate;
+    public void setPaymentID(String payment_ID) {
+        this.payment_ID = payment_ID;
+    }
 
-    @Column(name = "status")
-    private String status;
+    public LocalDate getPaymentDate() {
+        return paymentDate;
+    }
 
-    @Column(name = "upfront_amount")
-    private double upfrontAmount;
+    public void setPaymentDate(LocalDate paymentDate) {
+        this.paymentDate = paymentDate;
+    }
 
-    @Column(name = "balance_amount")
-    private double balanceAmount;
+    public double getPayamount() {
+        return payamount;
+    }
 
+    public void setPayamount(double payamount) {
+        this.payamount = payamount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getUpfrontAmount() {
+        return upfrontAmount;
+    }
+
+    public void setUpfrontAmount(double upfrontAmount) {
+        this.upfrontAmount = upfrontAmount;
+    }
+
+    public double getBalanceAmount() {
+        return balanceAmount;
+    }
+
+    public void setBalanceAmount(double balanceAmount) {
+        this.balanceAmount = balanceAmount;
+    }
+
+    public String getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
+    public String getStudentEmail() {
+        return studentEmail;
+    }
+
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
+    }
+
+    public StudentCourse getStudentCourse() {
+        return studentCourse;
+    }
+
+    public void setStudentCourse(StudentCourse studentCourse) {
+        this.studentCourse = studentCourse;
+    }
 }

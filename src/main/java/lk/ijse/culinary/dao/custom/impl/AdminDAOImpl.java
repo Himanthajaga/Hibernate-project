@@ -27,11 +27,13 @@ public class AdminDAOImpl implements AdminDAO {
     public void save(Admin entity) {
       session.save(entity);
 
+
     }
 
     @Override
     public void update(Admin entity) {
        session.update(entity);
+
 
     }
 

@@ -2,8 +2,6 @@ package lk.ijse.culinary.controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,13 +14,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.culinary.bo.BOFactory;
-import lk.ijse.culinary.bo.custom.CourseBO;
 import lk.ijse.culinary.bo.custom.StudentBO;
-import lk.ijse.culinary.bo.custom.impl.CourseBOImpl;
 import lk.ijse.culinary.bo.custom.impl.StudentBOImpl;
-import lk.ijse.culinary.dto.CourseDto;
 import lk.ijse.culinary.dto.StudentDto;
-import lk.ijse.culinary.tm.CourseTm;
 import lk.ijse.culinary.tm.StudentTm;
 
 import java.io.IOException;

@@ -1,9 +1,11 @@
 package lk.ijse.culinary.entity;
 
-import io.github.palexdev.materialfx.controls.MFXButton;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
@@ -28,4 +30,13 @@ public class Course {
     private Double courseFee;
 
 
+    public Course(String courseID, String courseName, double paymentFee) {
+        this.courseID = courseID;
+        this.courseName = courseName;
+        this.courseFee = paymentFee;
+    }
+
+    public Course(String courseID) {
+        this.courseID = courseID;
+    }
 }

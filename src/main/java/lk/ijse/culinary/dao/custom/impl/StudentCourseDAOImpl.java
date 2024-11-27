@@ -20,11 +20,13 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
     public void save(StudentCourse entity) {
         session.save(entity);
 
+
     }
 
     @Override
     public void update(StudentCourse entity) {
         session.update(entity);
+
 
     }
 

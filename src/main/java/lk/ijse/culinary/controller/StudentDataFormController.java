@@ -84,59 +84,73 @@ public class StudentDataFormController {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        if (!validateInputFields()) {
-            return;
-        }
+        if (validateFields()) {
 
-        String studentId = lblstudentId.getText();
-        String studentName = txtName.getText();
-        String studentEmail = txtEmail.getText();
-        String studentAddress = txtAddress.getText();
-        String studentCourse = cmbCourse.getSelectedItem();
-        String studentContact = contact.getText();
-        String studentDob = dateofbirth.getValue().toString();
+            String studentId = lblstudentId.getText();
+            String studentName = txtName.getText();
+            String studentEmail = txtEmail.getText();
+            String studentAddress = txtAddress.getText();
+            String studentCourse = cmbCourse.getSelectedItem();
+            String studentContact = contact.getText();
+            String studentDob = dateofbirth.getValue().toString();
 
-        StudentDto studentDto = new StudentDto(
-                studentId,
-                studentName,
-                studentAddress,
-                studentDob,
-                studentEmail,
-                studentContact,
-                studentCourse
-        );
+            StudentDto studentDto = new StudentDto(
+                    studentId,
+                    studentName,
+                    studentAddress,
+                    studentDob,
+                    studentEmail,
+                    studentContact,
+                    studentCourse
+            );
 
-        try {
-            boolean isAdded = studentBO.saveStudent(studentDto);
+            try {
+                boolean isAdded = studentBO.saveStudent(studentDto);
 
-            if (isAdded) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Student Added Successfully").show();
-                if (studentFormController != null) {
-                    studentFormController.refreshTable();
+                if (isAdded) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Student Added Successfully").show();
+                    if (studentFormController != null) {
+                        studentFormController.refreshTable();
+                    }
+                    closeTheWindow();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Failed to add the student").show();
                 }
-                closeTheWindow();
-            } else {
+            } catch (Exception e) {
+                e.printStackTrace();
                 new Alert(Alert.AlertType.ERROR, "Failed to add the student").show();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Failed to add the student").show();
         }
     }
 
-    private boolean validateInputFields() {
-        String studentEmail = txtEmail.getText();
-        String studentName = txtName.getText();
-        String studentAddress = txtAddress.getText();
-        String studentCourse = cmbCourse.getSelectionModel().getSelectedItem();
-        String studentContact = contact.getText();
-        String studentDob = dateofbirth.getValue().toString();
-
-        if (studentEmail.trim().isEmpty() || studentName.trim().isEmpty() || studentAddress.trim().isEmpty() || studentCourse == null || studentContact.trim().isEmpty() || studentDob.trim().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Please fill all the fields").show();
+    private boolean validateFields() {
+        if (!validateInputFields()) {
             return false;
         }
 
+        return true;
+    }
+
+    private boolean validateInputFields() {
+        if (txtName.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Student name is empty").show();
+            return false;
+        } else if (txtEmail.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Student email is empty").show();
+            return false;
+        } else if (txtAddress.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Student address is empty").show();
+            return false;
+        } else if (cmbCourse.getSelectionModel().getSelectedItem() == null) {
+            new Alert(Alert.AlertType.ERROR, "No course selected").show();
+            return false;
+        } else if (contact.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Student contact is empty").show();
+            return false;
+        } else if (dateofbirth.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Student date of birth is empty").show();
+            return false;
+        }
         return true;
     }
 

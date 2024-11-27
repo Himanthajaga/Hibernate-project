@@ -56,7 +56,6 @@ public class UpdateStudentFormController {
 
     public void initialize() {
         loadCourses();
-
     }
 
     private void loadCourses() {
@@ -73,7 +72,7 @@ public class UpdateStudentFormController {
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
-       closeTheWindow();
+        closeTheWindow();
     }
 
     @FXML
@@ -100,11 +99,9 @@ public class UpdateStudentFormController {
             boolean isUpdated = studentBO.updateStudent(updatedStudent);
 
             if (isUpdated) {
-
                 new Alert(Alert.AlertType.CONFIRMATION, "Student Updated Successfully").show();
                 if ( studentFormController != null) {
                     studentFormController.refreshTable();
-//                }studentFormController.updateStudent(updatedStudent);
                 }
                 closeTheWindow();
             } else {
@@ -115,6 +112,7 @@ public class UpdateStudentFormController {
             new Alert(Alert.AlertType.ERROR, "An error occurred while updating the student").show();
         }
     }
+
     private void closeTheWindow() {
         if (onCloseCallback != null) {
             onCloseCallback.accept(null);
@@ -122,6 +120,7 @@ public class UpdateStudentFormController {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
+
     @FXML
     void cmbCourseOnAction(ActionEvent event) {
         // Handle the action event for cmbCourse here

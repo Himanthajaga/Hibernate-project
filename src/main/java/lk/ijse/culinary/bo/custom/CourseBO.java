@@ -20,4 +20,7 @@ public interface CourseBO extends SuperBO {
 
     Course searchByName(String courseName) throws SQLException, ClassNotFoundException;
 
+    List<String> getAllCourseIDs();
+
+    int getCourseCount();
 }

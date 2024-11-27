@@ -17,19 +17,20 @@ public class CourseBOImpl implements CourseBO {
     private Session session;
 
     CourseDAO courseDAO = (CourseDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.COURSE);
+
     @Override
     public boolean saveCourse(CourseDto dto) {
         session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        try{
+        try {
             courseDAO.setSession(session);
-            courseDAO.save(new Course(dto.getCourseID(),dto.getCourseName(),dto.getCourseDuration(),dto.getCourseFee()));
+            courseDAO.save(new Course(dto.getCourseID(), dto.getCourseName(), dto.getCourseDuration(), dto.getCourseFee()));
             transaction.commit();
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             return false;
-        }finally {
+        } finally {
             session.close();
         }
     }
@@ -52,26 +53,26 @@ public class CourseBOImpl implements CourseBO {
     }
 
     @Override
-        public boolean deleteCourse(String id) {
-            session = SessionFactoryConfig.getInstance().getSession();
-            Transaction transaction = session.beginTransaction();
-            try {
-                courseDAO.setSession(session);
-                Course course = courseDAO.search(id);
-                if (course != null) {
-                    courseDAO.delete(course);
-                    transaction.commit();
-                    return true;
-                } else {
-                    transaction.rollback();
-                    return false;
-                }
-            } catch (Exception e) {
+    public boolean deleteCourse(String id) {
+        session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            courseDAO.setSession(session);
+            Course course = courseDAO.search(id);
+            if (course != null) {
+                courseDAO.delete(course);
+                transaction.commit();
+                return true;
+            } else {
                 transaction.rollback();
                 return false;
-            } finally {
-                session.close();
             }
+        } catch (Exception e) {
+            transaction.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
@@ -94,7 +95,7 @@ public class CourseBOImpl implements CourseBO {
 
     @Override
     public String generateNextId() throws SQLException, ClassNotFoundException {
-        return  courseDAO.generateNextId();
+        return courseDAO.generateNextId();
     }
 
     @Override
@@ -110,5 +111,23 @@ public class CourseBOImpl implements CourseBO {
     @Override
     public Course searchByName(String courseName) throws SQLException, ClassNotFoundException {
         return null;
+    }
+
+    @Override
+    public List<String> getAllCourseIDs() {
+        session = SessionFactoryConfig.getInstance().getSession();
+        courseDAO.setSession(session);
+        List<String> courseIDs = courseDAO.getAllCourseIDs();
+        session.close();
+        return courseIDs;
+    }
+
+    @Override
+    public int getCourseCount() {
+        session = SessionFactoryConfig.getInstance().getSession();
+        courseDAO.setSession(session);
+        int count = courseDAO.getCourseCount();
+        session.close();
+        return count;
     }
 }

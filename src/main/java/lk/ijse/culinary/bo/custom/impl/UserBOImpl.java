@@ -6,6 +6,8 @@ import lk.ijse.culinary.dao.DAOFactory;
 import lk.ijse.culinary.dao.custom.UserDAO;
 import lk.ijse.culinary.dto.UserDto;
 import lk.ijse.culinary.entity.User;
+import lk.ijse.culinary.util.PasswordEncrypt;
+import lk.ijse.culinary.util.PasswordVerifier;
 import lk.ijse.culinary.util.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -50,15 +52,16 @@ public class UserBOImpl implements UserBO {
     public boolean saveUser(UserDto dto) {
         session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        try{
+        try {
             userDAO.setSession(session);
-            userDAO.save(new User(dto.getEmail(),dto.getName(),dto.getAddress(),dto.getPassword(),dto.getImgUrl()));
+            String hashedPassword = PasswordEncrypt.hashPassword(dto.getPassword());
+            userDAO.save(new User(dto.getEmail(), dto.getName(), dto.getAddress(), hashedPassword, dto.getImgUrl()));
             transaction.commit();
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             return false;
-        }finally {
+        } finally {
             session.close();
         }
     }
@@ -151,21 +154,20 @@ public class UserBOImpl implements UserBO {
     }
 
     @Override
-    public boolean isUserExist(UserDto userDto) {
-        session=SessionFactoryConfig.getInstance().getSession();
+    public boolean isUserExist(UserDto dto) {
+        session = SessionFactoryConfig.getInstance().getSession();
         userDAO.setSession(session);
         try {
-            User search = userDAO.search(userDto.getEmail());
+            User search = userDAO.search(dto.getEmail());
             if (search != null) {
-                if (search.getPassword().equals(userDto.getPassword())) {
+                if (PasswordVerifier.verifyPassword(dto.getPassword(), search.getPassword())) {
                     loggedUser = search;
                     return true;
                 }
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             session.close();
         }
         return false;
@@ -191,4 +193,3 @@ public class UserBOImpl implements UserBO {
         return userDtoList;
     }
 }
-

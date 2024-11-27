@@ -10,11 +10,17 @@ import java.util.List;
 
 public interface PaymentBO extends SuperBO {
     boolean savePayment(PaymentDto dto);
+
     boolean updatePayment(PaymentDto dto);
+
     boolean deletePayment(String id);
+
     List<PaymentDto> getAllPayment();
+
     boolean isPaymentExist(PaymentDto dto);
+
     Payment searchById(String id) throws SQLException, ClassNotFoundException;
 
     public String generateNextId() throws SQLException, ClassNotFoundException;
+
 }

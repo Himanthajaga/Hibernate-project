@@ -26,11 +26,13 @@ public class UserDAOImpl implements UserDAO {
     public void save(User entity) {
         session.save(entity);
 
+
     }
 
     @Override
     public void update(User entity)  {
        session.update(entity);
+
 
     }
 

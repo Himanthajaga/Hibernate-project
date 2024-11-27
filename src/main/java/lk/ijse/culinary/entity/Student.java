@@ -45,4 +45,18 @@ public class Student {
         this.contact = contact;
         this.course = course;
     }
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public Student(Student studentEmail, Student studentName) {
+        this.email = studentEmail.getEmail();
+        this.name = studentName.getName();
+    }
+
+    public Student(String studentEmail, String name) {
+        this.email = studentEmail;
+        this.name = name;
+    }
 }

@@ -15,13 +15,13 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lk.ijse.culinary.bo.BOFactory;
 import lk.ijse.culinary.bo.custom.UserBO;
+import lk.ijse.culinary.bo.custom.impl.UserBOImpl;
 import lk.ijse.culinary.dto.UserDto;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class UserLoginFormController {
-
 
     @FXML
     private MFXPasswordField txtPassword;
@@ -32,17 +32,13 @@ public class UserLoginFormController {
     @FXML
     private AnchorPane loginPane;
 
-
     @FXML
     private Label lblError;
 
-
     UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
-
 
     @FXML
     void btnLogin(ActionEvent event) throws IOException {
-
         boolean isLoginValidated = validateLogin();
 
         if (!isLoginValidated) {
@@ -80,13 +76,11 @@ public class UserLoginFormController {
         stage.setTitle("Dashboard");
         stage.show();
 
-        //Close the Current Window
         Stage loginStage = (Stage) loginPane.getScene().getWindow();
         loginStage.close();
     }
 
     private boolean validateLogin() {
-
         boolean isEmailValid = Pattern.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", txtEmail.getText());
         if (!isEmailValid) {
             txtEmail.requestFocus();
@@ -95,7 +89,6 @@ public class UserLoginFormController {
         }
 
         txtEmail.getStyleClass().remove("mfx-text-field-error");
-
 
         boolean isPasswordValid = Pattern.matches("^[a-zA-Z0-9@#]{3,}$", txtPassword.getText());
         if (!isPasswordValid) {
@@ -112,16 +105,15 @@ public class UserLoginFormController {
     @FXML
     void btnRegister(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/userImageForm.fxml"));
-        Pane registerPane = (Pane) fxmlLoader.load();
+        Pane registerPane = fxmlLoader.load();
         loginPane.getChildren().clear();
         loginPane.getChildren().add(registerPane);
     }
 
-
     @FXML
     void btnAdminLogin(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminLoginForm.fxml"));
-        Pane adminLoginPane = (Pane) fxmlLoader.load();
+        Pane adminLoginPane = fxmlLoader.load();
         loginPane.getChildren().clear();
         loginPane.getChildren().add(adminLoginPane);
     }
@@ -130,9 +122,4 @@ public class UserLoginFormController {
     void txtPasswordOnAction(ActionEvent event) throws IOException {
         btnLogin(event);
     }
-
-
-
-
 }
-

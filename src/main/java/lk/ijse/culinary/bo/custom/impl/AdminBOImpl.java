@@ -6,6 +6,8 @@ import lk.ijse.culinary.dao.DAOFactory;
 import lk.ijse.culinary.dao.custom.AdminDAO;
 import lk.ijse.culinary.dto.AdminDto;
 import lk.ijse.culinary.entity.Admin;
+import lk.ijse.culinary.util.PasswordEncrypt;
+import lk.ijse.culinary.util.PasswordVerifier;
 import lk.ijse.culinary.util.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -22,8 +24,7 @@ public class AdminBOImpl implements AdminBO {
 
     private Session session;
 
-    AdminDAO adminDAO =(AdminDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.ADMIN);
-
+    AdminDAO adminDAO = (AdminDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.ADMIN);
 
 
     @Override
@@ -37,9 +38,9 @@ public class AdminBOImpl implements AdminBO {
                         admin.getUsername(),
                         admin.getPassword()));
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             session.close();
         }
         return adminList;
@@ -50,15 +51,16 @@ public class AdminBOImpl implements AdminBO {
     public boolean saveAdmin(AdminDto dto) {
         session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        try{
+        try {
             adminDAO.setSession(session);
-            adminDAO.save(new Admin(dto.getUsername(),dto.getPassword(), dto.getImgUrl()));
+            String hashedPassword = PasswordEncrypt.hashPassword(dto.getPassword());
+            adminDAO.save(new Admin(dto.getUsername(), hashedPassword, dto.getImgUrl()));
             transaction.commit();
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             return false;
-        }finally {
+        } finally {
             session.close();
         }
     }
@@ -67,41 +69,41 @@ public class AdminBOImpl implements AdminBO {
     public boolean updateAdmin(AdminDto dto) {
         session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        try{
+        try {
             adminDAO.setSession(session);
             Admin admin = adminDAO.search(AdminBOImpl.loggedAdmin.getUsername());
             session.clear();
-            if (!(admin.getUsername().equals(dto.getUsername()))){
+            if (!(admin.getUsername().equals(dto.getUsername()))) {
                 int result = adminDAO.updateAdminUsername(dto.getUsername(), admin.getUsername());
-                if (!(result > 0)){
+                if (!(result > 0)) {
                     throw new RuntimeException("Something went wrong");
                 }
             }
-            adminDAO.update(new Admin(dto.getUsername(),dto.getPassword(), dto.getImgUrl()));
+            adminDAO.update(new Admin(dto.getUsername(), dto.getPassword(), dto.getImgUrl()));
             transaction.commit();
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             return false;
-        }finally {
+        } finally {
             session.close();
         }
     }
 
     @Override
     public boolean deleteAdmin(String id) {
-        session=SessionFactoryConfig.getInstance().getSession();
+        session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        try{
+        try {
             adminDAO.setSession(session);
             Admin admin = adminDAO.search(id);
             adminDAO.delete(admin);
             transaction.commit();
             return true;
-        }catch (Exception e) {
+        } catch (Exception e) {
             transaction.rollback();
             return false;
-        }finally {
+        } finally {
             session.close();
         }
     }
@@ -109,23 +111,22 @@ public class AdminBOImpl implements AdminBO {
 
     @Override
     public boolean isAdminExist(AdminDto dto) {
-        session=SessionFactoryConfig.getInstance().getSession();
+        session = SessionFactoryConfig.getInstance().getSession();
         adminDAO.setSession(session);
         try {
             Admin search = adminDAO.search(dto.getUsername());
             if (search != null) {
-                if (search.getPassword().equals(dto.getPassword())) {
+                if (PasswordVerifier.verifyPassword(dto.getPassword(), search.getPassword())) {
                     loggedAdmin = search;
                     return true;
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             session.close();
         }
         return false;
+
     }
-
 }
-
