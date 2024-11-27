@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import lk.ijse.culinary.bo.BOFactory;
 import lk.ijse.culinary.bo.custom.CourseBO;
 import lk.ijse.culinary.dto.CourseDto;
+import lk.ijse.culinary.util.ValidationUtil;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -68,11 +69,6 @@ public class CourseDataFormController {
             String courseDuration = txtCourseDuration.getText();
             String courseFeeText = txtCourseFee.getText();
 
-            if (courseId.trim().isEmpty() || courseName.trim().isEmpty() || courseDuration.trim().isEmpty() || courseFeeText.trim().isEmpty()) {
-                new Alert(Alert.AlertType.ERROR, "Please fill all the fields").show();
-                return;
-            }
-
             double courseFee;
             try {
                 courseFee = Double.parseDouble(courseFeeText);
@@ -103,14 +99,16 @@ public class CourseDataFormController {
     }
 
     private boolean validateFields() {
-        if (txtCourseName.getText().trim().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Course name is empty").show();
+        if (!ValidationUtil.isValidName(txtCourseName.getText())) {
+            new Alert(Alert.AlertType.ERROR, "Invalid course name").show();
             return false;
-        } else if (txtCourseDuration.getText().trim().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Course duration is empty").show();
+        }
+        if (!ValidationUtil.isNotEmpty(txtCourseDuration.getText())) {
+            new Alert(Alert.AlertType.ERROR, "Course duration cannot be empty").show();
             return false;
-        } else if (txtCourseFee.getText().trim().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Course fee is empty").show();
+        }
+        if (!ValidationUtil.isNumeric(txtCourseFee.getText())) {
+            new Alert(Alert.AlertType.ERROR, "Course fee must be a number").show();
             return false;
         }
         return true;

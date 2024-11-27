@@ -16,6 +16,7 @@ public class Launcher extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("/view/mainForm.fxml"));
         Parent rootNode = fxmlLoader.load();
+
         //These for the MaterialFX library
         UserAgentBuilder.builder()
                 .themes(JavaFXThemes.MODENA)
@@ -25,6 +26,7 @@ public class Launcher extends Application {
                 .build()
                 .setGlobal();
         Scene scene = new Scene(rootNode);
+        scene.getStylesheets().add(getClass().getResource("/assets/css/PageStyles.css").toExternalForm());
         stage.setTitle("Login");
         stage.centerOnScreen();
         stage.setResizable(false);

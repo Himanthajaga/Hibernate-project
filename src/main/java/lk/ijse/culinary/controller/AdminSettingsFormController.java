@@ -21,7 +21,6 @@ import lk.ijse.culinary.bo.BOFactory;
 import lk.ijse.culinary.bo.custom.AdminBO;
 import lk.ijse.culinary.bo.custom.impl.AdminBOImpl;
 import lk.ijse.culinary.dto.AdminDto;
-import lk.ijse.culinary.util.PasswordUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +32,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class AdminSettingsFormController {
-    
+
 
     @FXML
     private MFXPasswordField txtPassword;
@@ -97,9 +96,8 @@ public class AdminSettingsFormController {
         }
 
         String imgUrl = imageSave();
-        String encryptedPassword = PasswordUtil.encryptPassword(txtPassword.getText());
 
-        AdminDto adminDto = new AdminDto(txtUsername.getText(), encryptedPassword, imgUrl);
+        AdminDto adminDto = new AdminDto(txtUsername.getText(), txtPassword.getText(),imgUrl);
         boolean isSaved = adminBO.updateAdmin(adminDto);
         if (isSaved) {
             updateAdminDetails(adminDto);
@@ -149,25 +147,28 @@ public class AdminSettingsFormController {
     }
 
     private boolean validateRegister() {
-        boolean isUserNameValid =txtUsername.getText().matches("^[a-zA-Z0-9._]{3,}$");
-        if (!isUserNameValid) {
-            txtUsername.requestFocus();
-            txtUsername.getStyleClass().add("mfx-text-field-details-error");
-            return false;
+
+        boolean isValid = true;
+
+        if (!txtUsername.getText().matches("^[a-zA-Z0-9._]{3,}$")) {
+            txtUsername.getStyleClass().add("text-field-error");
+            txtUsername.getStyleClass().remove("text-field-success");
+            isValid = false;
+        } else {
+            txtUsername.getStyleClass().remove("text-field-error");
+            txtUsername.getStyleClass().add("text-field-success");
         }
 
-        txtUsername.getStyleClass().remove("mfx-text-field-details-error");
-
-        boolean isPasswordValid = txtPassword.getText().matches("^[a-zA-Z0-9@#]{3,}$");
-
-        if (!isPasswordValid) {
-            txtPassword.requestFocus();
-            txtPassword.getStyleClass().add("mfx-text-field-details-error");
-            return false;
+        if (!txtPassword.getText().matches("^[a-zA-Z0-9@#]{3,}$")) {
+            txtPassword.getStyleClass().add("text-field-error");
+            txtPassword.getStyleClass().remove("text-field-success");
+            isValid = false;
+        } else {
+            txtPassword.getStyleClass().remove("text-field-error");
+            txtPassword.getStyleClass().add("text-field-success");
         }
 
-        txtPassword.getStyleClass().remove("mfx-text-field-details-error");
-        return true;
+        return isValid;
     }
 
     @FXML
@@ -187,9 +188,8 @@ public class AdminSettingsFormController {
     private void configureFileChooser(FileChooser fileChooser) {
         fileChooser.setTitle("Select Image File");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.jpeg")
+                new FileChooser.ExtensionFilter("Image Files", ".png", ".jpg", ".gif", ".jpeg")
         );
     }
 
 }
-
