@@ -26,7 +26,6 @@ public class Launcher extends Application {
                 .build()
                 .setGlobal();
         Scene scene = new Scene(rootNode);
-        scene.getStylesheets().add(getClass().getResource("/assets/css/PageStyles.css").toExternalForm());
         stage.setTitle("Login");
         stage.centerOnScreen();
         stage.setResizable(false);

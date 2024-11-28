@@ -206,6 +206,7 @@ public class CoursePaymentFormController {
         controller.setCoursePaymentFormController(this);
         controller.setOnCloseCallback(aVoid -> refreshTable());
         Scene scene = new Scene(rootNode);
+
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.centerOnScreen();

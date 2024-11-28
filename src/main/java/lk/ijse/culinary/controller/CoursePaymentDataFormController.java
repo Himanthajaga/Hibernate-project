@@ -246,65 +246,76 @@ public class CoursePaymentDataFormController {
 //        txtCourseFee.setText(selectedPayment.getCourseFee() + "");
 //    }
 
-    @FXML
-    void btnPayOnAction(ActionEvent event) {
-        if (validateFields()) {
-            String paymentId = lblPayID.getText();
-            String studentEmail = cmbStudentEmail.getSelectionModel().getSelectedItem();
-            String courseId = cmbCourse.getSelectionModel().getSelectedItem();
-            LocalDate paymentDate = Date.getValue();
-            double upfrontAmount = Double.parseDouble(txtAmount.getText());
-            double courseFee = Double.parseDouble(txtCourseFee.getText());
-            double balanceAmount = courseFee - upfrontAmount;
+        @FXML
+        void btnPayOnAction (ActionEvent event){
+            if (validateFields()) {
+                String paymentId = lblPayID.getText();
+                String studentEmail = cmbStudentEmail.getSelectionModel().getSelectedItem();
+                String courseId = cmbCourse.getSelectionModel().getSelectedItem();
+                LocalDate paymentDate = Date.getValue();
+                double upfrontAmount = Double.parseDouble(txtAmount.getText());
+                double courseFee = Double.parseDouble(txtCourseFee.getText());
+                double balanceAmount = courseFee - upfrontAmount;
 
-            PaymentDto paymentDto = new PaymentDto(paymentId, paymentDate, upfrontAmount, balanceAmount, "Paid", studentEmail, courseId, upfrontAmount);
+                PaymentDto paymentDto = new PaymentDto(paymentId, paymentDate, upfrontAmount, balanceAmount, "Paid", studentEmail, courseId, upfrontAmount);
 
-            try {
-                boolean isSaved = paymentBO.savePayment(paymentDto);
-                if (isSaved) {
-                    new Alert(Alert.AlertType.INFORMATION, "Payment Successful!").show();
-                    coursePaymentFormController.addNewPayment(paymentDto);
-                    closeTheWindow();
-                } else {
-                    new Alert(Alert.AlertType.ERROR, "Payment Failed!").show();
+                try {
+                    boolean isSaved = paymentBO.savePayment(paymentDto);
+                    if (isSaved) {
+                        new Alert(Alert.AlertType.INFORMATION, "Payment Successful!").show();
+                        coursePaymentFormController.addNewPayment(paymentDto);
+                        closeTheWindow();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Payment Failed!").show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    new Alert(Alert.AlertType.ERROR, "An error occurred while processing the payment.").show();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "An error occurred while processing the payment.").show();
             }
         }
-    }
+
 
     private boolean validateFields() {
-        if (!ValidationUtil.isNotEmpty(String.valueOf(txtAmount))) {
-            new Alert(Alert.AlertType.ERROR, "Amount field cannot be empty!").show();
-            return false;
+        boolean isValid = true;
+
+        if (!ValidationUtil.isNotEmpty(txtAmount.getText()) || !ValidationUtil.isValidPaymentValue(txtAmount.getText())) {
+            txtAmount.getStyleClass().add("text-field-error");
+            txtAmount.getStyleClass().remove("text-field-success");
+            isValid = false;
+        } else {
+            txtAmount.getStyleClass().remove("text-field-error");
+            txtAmount.getStyleClass().add("text-field-success");
         }
-//        if (!ValidationUtil.isDecimal(String.valueOf(txtAmount))) {
-//            new Alert(Alert.AlertType.ERROR, "Amount must be a number!").show();
-//            return false;
-//        }
-        if (!ValidationUtil.isNotEmpty(String.valueOf(txtCourseFee))) {
-            new Alert(Alert.AlertType.ERROR, "Course Fee field cannot be empty!").show();
-            return false;
+
+        if (!ValidationUtil.isNotEmpty(txtCourseFee.getText()) || !ValidationUtil.isValidPaymentValue(txtCourseFee.getText())) {
+            txtCourseFee.getStyleClass().add("text-field-error");
+            txtCourseFee.getStyleClass().remove("text-field-success");
+            isValid = false;
+        } else {
+            txtCourseFee.getStyleClass().remove("text-field-error");
+            txtCourseFee.getStyleClass().add("text-field-success");
         }
-//        if (!ValidationUtil.isNumeric(String.valueOf(txtCourseFee))) {
-//            new Alert(Alert.AlertType.ERROR, "Course Fee must be a number!").show();
-//            return false;
-//        }
-        if (!ValidationUtil.isNotEmpty(String.valueOf(txtName))) {
-            new Alert(Alert.AlertType.ERROR, "Name field cannot be empty!").show();
-            return false;
+
+        if (!ValidationUtil.isNotEmpty(txtName.getText())) {
+            txtName.getStyleClass().add("text-field-error");
+            txtName.getStyleClass().remove("text-field-success");
+            isValid = false;
+        } else {
+            txtName.getStyleClass().remove("text-field-error");
+            txtName.getStyleClass().add("text-field-success");
         }
-        if (!ValidationUtil.isNotEmpty(cmbStudentEmail.getSelectedItem())) {
-            new Alert(Alert.AlertType.ERROR, "Student Email field cannot be empty!").show();
-            return false;
+
+        if (!ValidationUtil.isNotEmpty(cmbStudentEmail.getSelectedItem()) || !ValidationUtil.isValidEmail(cmbStudentEmail.getSelectedItem())) {
+            cmbStudentEmail.getStyleClass().add("text-field-error");
+            cmbStudentEmail.getStyleClass().remove("text-field-success");
+            isValid = false;
+        } else {
+            cmbStudentEmail.getStyleClass().remove("text-field-error");
+            cmbStudentEmail.getStyleClass().add("text-field-success");
         }
-        if (!ValidationUtil.isValidEmail(cmbStudentEmail.getSelectedItem())) {
-            new Alert(Alert.AlertType.ERROR, "Invalid email format!").show();
-            return false;
-        }
-        return true;
+
+        return isValid;
     }
 
     @FXML

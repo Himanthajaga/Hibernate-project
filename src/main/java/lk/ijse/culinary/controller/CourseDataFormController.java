@@ -107,7 +107,7 @@ public class CourseDataFormController {
             new Alert(Alert.AlertType.ERROR, "Course duration cannot be empty").show();
             return false;
         }
-        if (!ValidationUtil.isNumeric(txtCourseFee.getText())) {
+        if (!ValidationUtil.isValidPaymentValue(txtCourseFee.getText())) {
             new Alert(Alert.AlertType.ERROR, "Course fee must be a number").show();
             return false;
         }

@@ -98,11 +98,14 @@ public class CourseFormController {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/updateCourseForm.fxml"));
             Parent rootNode = loader.load();
 
+
+
             UpdateCourseFormController controller = loader.getController();
             controller.setCourseFormController(this);
             controller.setCourseDetails(selectedCourse);
 
             Scene scene = new Scene(rootNode);
+
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.centerOnScreen();

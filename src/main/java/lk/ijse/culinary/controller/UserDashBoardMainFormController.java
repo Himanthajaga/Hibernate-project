@@ -53,6 +53,8 @@ public class UserDashBoardMainFormController {
         setButtonColors(Pages.DASHBOARD);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/userDashBoardForm.fxml"));
         Pane dashboardPane = (Pane) fxmlLoader.load();
+
+
         holderPane.getChildren().clear();
         holderPane.getChildren().add(dashboardPane);
     }
@@ -72,6 +74,8 @@ public class UserDashBoardMainFormController {
         Pane coursesPane = null;
         try {
             coursesPane = (Pane) fxmlLoader.load();
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -87,6 +91,8 @@ public class UserDashBoardMainFormController {
         Pane settingPane = null;
         try {
             settingPane = (Pane) fxmlLoader.load();
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -117,6 +123,8 @@ public class UserDashBoardMainFormController {
         Pane registerPane = null;
         try {
             registerPane = (Pane) fxmlLoader.load();
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -132,6 +140,8 @@ public class UserDashBoardMainFormController {
         Pane settingPane = null;
         try {
             settingPane = (Pane) fxmlLoader.load();
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

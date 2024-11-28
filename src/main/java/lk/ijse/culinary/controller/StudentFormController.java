@@ -120,6 +120,7 @@ public class StudentFormController {
             controller.setStudentDetails(selectedStudent);
 
             Scene scene = new Scene(rootNode);
+
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.centerOnScreen();
@@ -220,6 +221,7 @@ public class StudentFormController {
         controller.setStudentFormController(this);
         controller.setOnCloseCallback(aVoid -> refreshTable());
         Scene scene = new Scene(rootNode);
+
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.centerOnScreen();

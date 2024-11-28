@@ -6,7 +6,7 @@ public class ValidationUtil {
     }
 
     public static boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        String emailRegex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         return email.matches(emailRegex);
     }
 
@@ -31,6 +31,10 @@ public class ValidationUtil {
     public static boolean isValidContact(String contact) {
         String contactRegex = "^[0-9]{10}$";
         return contact.matches(contactRegex);
+    }
+    public static boolean isValidPaymentValue(String value) {
+        String paymentValueRegex = "^\\d+(\\.\\d{1,2})?$";
+        return value.matches(paymentValueRegex);
     }
 
     public static boolean isValidAddress(String address) {

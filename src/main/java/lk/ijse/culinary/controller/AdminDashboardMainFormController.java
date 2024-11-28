@@ -67,6 +67,8 @@ public class AdminDashboardMainFormController {
         setButtonColors(Pages.DASHBOARD);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminDashBoardForm.fxml"));
         Pane dashboardPane = (Pane) fxmlLoader.load();
+
+
         holderPane.getChildren().clear();
         holderPane.getChildren().add(dashboardPane);
     }
@@ -77,6 +79,8 @@ public class AdminDashboardMainFormController {
         setAdminNameAndImage(true);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/courseForm.fxml"));
         Pane bookPane = (Pane) fxmlLoader.load();
+
+
         holderPane.getChildren().clear();
         holderPane.getChildren().add(bookPane);
     }
@@ -99,6 +103,8 @@ public class AdminDashboardMainFormController {
         setAdminNameAndImage(true);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminDashBoardForm.fxml"));
         Pane dashboardPane = (Pane) fxmlLoader.load();
+
+
         holderPane.getChildren().clear();
         holderPane.getChildren().add(dashboardPane);
     }
@@ -125,6 +131,8 @@ public class AdminDashboardMainFormController {
         setAdminNameAndImage(false);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminSettingsForm.fxml"));
         Pane settingPane = (Pane) fxmlLoader.load();
+
+
         holderPane.getChildren().clear();
         holderPane.getChildren().add(settingPane);
     }
@@ -136,6 +144,8 @@ public class AdminDashboardMainFormController {
         setAdminNameAndImage(true);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/studentForm.fxml"));
         Pane userPane = (Pane) fxmlLoader.load();
+
+
         holderPane.getChildren().clear();
         holderPane.getChildren().add(userPane);
     }
